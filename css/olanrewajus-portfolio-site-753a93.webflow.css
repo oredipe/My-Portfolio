@@ -2614,6 +2614,7 @@
 align-items {
   align-items: flex-start;
   justify-content: center;
+  
 }
 
 
@@ -2640,9 +2641,7 @@ align-items {
     grid-template-columns: 2fr;
     gap: 1rem;
   }
-  .align-items {
-    align-items: flex-end;
-  }
+
 
   #w-node-_33488db9-cf58-72d0-931f-bcce5cd859d2-1fcd2a9f {
     grid-template-rows: auto;
@@ -2663,4 +2662,9 @@ align-items {
   }
 }
 
-
+@media (min-width: 480px) {  
+  .align-items-custom {
+    align-items: flex-end;
+    justify-content: center;
+  }
+}
