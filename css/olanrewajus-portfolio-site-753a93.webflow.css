@@ -1225,6 +1225,13 @@
   margin-bottom: 40px;
 }
 
+.flex-block-50 {
+  gap: 16px;
+  align-self: stretch;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
 .image-26 {
   width: 1200px;
   height: 550px;
@@ -2509,6 +2516,10 @@
   }
 
   .flex-block-38 {
+    margin-bottom: 20px;
+  }
+
+  .flex-block-50 {
     margin-bottom: 20px;
   }
 
