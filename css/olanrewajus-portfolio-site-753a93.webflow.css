@@ -1227,9 +1227,9 @@
 
 .flex-block-50 {
   gap: 16px;
-  align-self: stretch;
+  /* align-self: stretch;
   align-items: center;
-  margin-bottom: 40px;
+  margin-bottom: 40px; */
 }
 
 .image-26 {
