@@ -1492,11 +1492,11 @@
   }
 
   .image-2 {
-    width: 100%;
+    width: 650px;
     height: 100%;
+    max-width: 500px;
     align-self: flex-end;
     object-fit: cover;
-    text-decoration: none;
   }
 
   .heading-4, .heading-4.h2-styling {
