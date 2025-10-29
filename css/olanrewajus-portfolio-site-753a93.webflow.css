@@ -108,18 +108,18 @@
 }
 
 .nav-link {
-  color: var(--dark-grey);
+  color: #ffffff;
   padding-left: 24px;
   line-height: 150%;
 }
 
 .nav-link:hover {
-  background-color: #1b1b1b;
+  background-color: #908B68;
   border-radius: 5px;
 }
 
 .nav-link.w--current {
-  color: var(--white);
+  color: #F2D401;
 }
 
 .container-2 {
