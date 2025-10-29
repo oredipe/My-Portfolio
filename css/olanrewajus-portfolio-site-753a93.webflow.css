@@ -1493,9 +1493,9 @@
 
   .image-2 {
     width: 650px;
-  height: 100%;
-  align-self: flex-end;
-  object-fit: cover;
+    height: 100%;
+    align-self: flex-end;
+    object-fit: cover;
     text-decoration: none;
   }
 
