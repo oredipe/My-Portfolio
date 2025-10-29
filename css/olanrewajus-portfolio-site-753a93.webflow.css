@@ -2092,7 +2092,7 @@
   }
 }
 
-@media screen and (max-width: 479px) {
+@media screen and (max-width: 650px) {
   .hero-section {
     margin-bottom: 40px;
   }
