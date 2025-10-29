@@ -2681,3 +2681,35 @@ align-items {
     justify-content: center;
   }
 }
+
+
+/* New Code */
+
+.image-2 {
+  width: 650px;
+  height: 100%;
+  max-width: 500px;
+  align-self: flex-end;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 991px) {
+  .image-2 {
+    text-decoration: none;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .image-2 {
+    min-width: 200px;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .image-2 {
+    overflow: visible;
+    max-width: 100%;
+    min-width: 100px;
+    object-fit: contain;
+  }
+}
