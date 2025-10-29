@@ -240,7 +240,7 @@
 .heading-3 {
   max-width: 627px;
   margin-top: 0;
-  margin-bottom: 40px;
+  margin-bottom: 16px;
   font-size: 50px;
   font-weight: 600;
   line-height: 110%;
@@ -249,7 +249,7 @@
 .paragraph-3 {
   max-width: 583px;
   color: var(--light-grey);
-  margin-bottom: 40px;
+  margin-bottom: 0px;
   font-size: 24px;
   font-weight: 300;
   line-height: 150%;
