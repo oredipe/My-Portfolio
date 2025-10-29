@@ -383,7 +383,7 @@
 }
 
 .image-3 {
-  width: 800px;
+  width: 550px;
   height: 450px;
   max-width: none;
   object-fit: cover;
@@ -424,8 +424,8 @@
 }
 
 .image-4 {
-  width: 800px;
-  height: 450px;
+  width: 550px;
+  height: 400px;
   max-width: none;
   border-radius: 10px;
 }
