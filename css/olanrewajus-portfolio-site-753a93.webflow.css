@@ -263,12 +263,15 @@
   -webkit-text-fill-color: inherit;
   background-color: #1e1e1e;
   background-clip: border-box;
-  border-radius: 10px;
+  border-radius: 24px;
   margin-top: 140px;
   margin-left: auto;
   margin-right: auto;
   padding: 80px 0 113px 60px;
   overflow: hidden;
+  border-style: solid;
+  border-width: 2px;
+  border-color: rgb(144, 139, 104);
 }
 
 .cell-4 {
