@@ -256,7 +256,7 @@
 }
 
 .quick-stack-3 {
-  max-height: 600px;
+  max-height: 550px;
   max-width: 1200px;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
@@ -267,7 +267,7 @@
   margin-top: 140px;
   margin-left: auto;
   margin-right: auto;
-  padding: 113px 0 113px 96px;
+  padding: 80px 0 113px 60px;
   overflow: hidden;
 }
 
@@ -2712,4 +2712,13 @@ align-items {
     min-width: 100px;
     object-fit: contain;
   }
+}
+
+.flex-block-44 {
+  display: flex;
+  margin-bottom: 40px;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 0px;
 }
