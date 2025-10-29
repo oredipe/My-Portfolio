@@ -2125,10 +2125,11 @@
   }
 
   .image-2 {
-    max-width: 100%;
-    min-width: 100px;
-    object-fit: contain;
-    overflow: visible;
+    width: 650px;
+    height: 100%;
+    max-width: 500px;
+    align-self: flex-end;
+    object-fit: cover;
   }
 
   .cell-5 {
