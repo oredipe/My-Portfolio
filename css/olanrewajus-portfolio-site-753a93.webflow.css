@@ -2730,3 +2730,40 @@ align-items {
   align-items: flex-start;
   gap: 0px;
 }
+
+.quick-stack-4 {
+  margin-bottom: 100px;
+  padding: 0px;
+  gap: 80px;
+}
+
+@media screen and (max-width: 991px) {
+  .quick-stack-4 {
+    gap: 0px;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .quick-stack-4 {
+    overflow: visible;
+    margin-bottom: 40px;
+    gap: 20px;
+  }
+}
+
+.quick-stack-5 {
+  margin-bottom: 60px;
+  padding: 0px;
+}
+
+@media screen and (max-width: 991px) {
+  .quick-stack-5 {
+    gap: 0px;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .quick-stack-5 {
+    margin-bottom: 0px;
+  }
+}
