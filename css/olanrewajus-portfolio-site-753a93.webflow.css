@@ -2802,3 +2802,15 @@ align-items {
     font-size: 16px;
   }
 }
+
+@media screen and (max-width: 479px) {
+  .paragraph-3 {
+    width: 100%;
+    max-width: none;
+    min-width: 0px;
+    margin-bottom: 10px;
+    color: #ababab;
+    font-size: 16px;
+    line-height: 150%;
+  }
+}
