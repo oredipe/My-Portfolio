@@ -384,10 +384,10 @@
 
 .image-3 {
   width: 550px;
-  height: 450px;
+  height: 400px;
   max-width: none;
-  /* object-fit: cover; */
-  border-radius: 10px;
+  object-fit: cover;
+  border-radius: 16px;
 }
 
 .heading-5 {
@@ -428,7 +428,7 @@
   width: 550px;
   height: 400px;
   max-width: none;
-  border-radius: 10px;
+  border-radius: 16px;
 }
 
 .cell-7 {
