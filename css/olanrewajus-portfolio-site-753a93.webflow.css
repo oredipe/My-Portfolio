@@ -2851,4 +2851,8 @@ align-items {
   .section-12 {
     margin-top: auto;
   }
+
+  .project-cards.last-card-style {
+    margin-bottom: 0px;
+  }
 }
