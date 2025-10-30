@@ -1795,7 +1795,7 @@
   }
 
   .text-block-10.last-card-details {
-    margin-bottom: 40px;
+    margin-bottom: 0;
   }
 
   .image-25 {
@@ -2824,5 +2824,19 @@ align-items {
     padding-bottom: 0px;
     font-size: 24px;
     line-height: 110%;
+  }
+
+  .text-block-10 {
+    width: 100%;
+    margin-bottom: 20px;
+    font-size: 16px;
+  }
+
+  .project-cards {
+    display: flex;
+    margin-bottom: 60px;
+    padding-bottom: 0px;
+    align-items: flex-start;
+    align-self: auto;
   }
 }
