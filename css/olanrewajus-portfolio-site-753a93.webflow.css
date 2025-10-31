@@ -242,8 +242,9 @@
   margin-top: 0;
   margin-bottom: 16px;
   font-size: 50px;
-  /* font-weight: 400; */
+  font-weight: 400;
   line-height: 110%;
+  color: #908B68;
 }
 
 .paragraph-3 {
@@ -2887,4 +2888,14 @@ align-items {
   line-height: 100%;
   font-weight: 600;
   text-decoration: none;
+}
+
+.highlight{
+  font-weight: 800;
+  color: #F2D401;
+}
+
+.highlight-2{
+  font-weight: 300;
+  color: white;
 }
