@@ -2871,4 +2871,6 @@ align-items {
   border-radius: 10px;
   background-color: rgb(242, 212, 1);
   text-decoration: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
