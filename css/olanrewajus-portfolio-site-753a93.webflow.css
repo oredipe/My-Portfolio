@@ -2855,4 +2855,20 @@ align-items {
   .project-cards.last-card-style {
     margin-bottom: 0px;
   }
+
+  .flex-block-44 {
+    margin-bottom: 0px;
+  }
+}
+
+.ctas-main {
+  display: flex;
+  padding: 15px 20px;
+  justify-content: center;
+  align-items: center;
+  flex: 0 1 auto;
+  column-gap: 4px;
+  border-radius: 10px;
+  background-color: rgb(242, 212, 1);
+  text-decoration: none;
 }
