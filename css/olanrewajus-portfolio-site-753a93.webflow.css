@@ -2859,6 +2859,10 @@ align-items {
   .flex-block-44 {
     margin-bottom: 0px;
   }
+
+  .text-3 {
+    font-size: 16px;
+  }
 }
 
 .ctas-main {
@@ -2872,4 +2876,15 @@ align-items {
   background-color: rgb(242, 212, 1);
   text-decoration: none;
   margin-bottom: 10px;
+}
+
+.text-3 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-family: Urbanist, sans-serif;
+  color: rgb(0, 0, 0);
+  font-size: 20px;
+  line-height: 100%;
+  font-weight: 600;
+  text-decoration: none;
 }
