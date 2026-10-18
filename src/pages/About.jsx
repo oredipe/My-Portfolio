@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { resume } from '../data/profile.js'
 import { useTitle } from '../useTitle.js'
+import { ArtCluster } from '../components/Art.jsx'
 
 const principles = [
   ['Start from the constraint', 'Most of my users have little time, patchy data or a good reason to be suspicious. I design for that person first: plain words, fewer steps, and nothing that sounds too good to be true.'],
@@ -19,7 +20,8 @@ export default function About() {
   useTitle('About')
   return (
     <div className="wrap">
-      <header className="page-head">
+      <header className="page-head has-art">
+        <ArtCluster className="art-head" variant="a" />
         <h1 className="page-title">About</h1>
       </header>
 

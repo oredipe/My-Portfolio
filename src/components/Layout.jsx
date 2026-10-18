@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import { profile } from '../data/profile.js'
+import { ArtCluster } from './Art.jsx'
 
 const nav = [
   ['/projects', 'Work'],
@@ -40,6 +41,7 @@ export default function Layout() {
       </main>
 
       <footer className="footer">
+        <ArtCluster className="art-footer" variant="a" />
         <div className="wrap footer-row">
           <p className="footer-lead">
             Hiring a product designer, or have a product that needs one?{' '}

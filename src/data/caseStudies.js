@@ -24,6 +24,7 @@ export const caseStudies = [
       ['What I led', 'Pillfinda mobile app, designed by a junior designer under my direction and review'],
       ['Worked with', 'Product managers (who ran research and testing), engineering leadership, marketing'],
       ['Tools', 'Figma, Webflow, Untitled UI (customised for OneHealth)'],
+      ['Live app', '[OneHealthNG on the App Store](https://apps.apple.com/ng/app/onehealthng-online-pharmacy/id6443616382)'],
     ],
     sections: [
       {
@@ -51,7 +52,7 @@ export const caseStudies = [
           img('onehealth', 'hero', 'OneHealth website hero'),
           img('onehealth', 'audiences', 'Three entry points on the homepage: for individuals, for insurers and telemeds, for pharmacies', 'The homepage hero, then one card per audience, each with its own next step.'),
           { type: 'h', title: 'Design for the repeat purchase, not the first one', text: 'Patients with chronic conditions need the same medicines every month. The auto-refill subscription puts the savings, the remaining refills and the delivery status in front of them, so staying subscribed is the easy choice.' },
-          img('onehealth', 'app', 'OneHealth app: home, managing refills, checkout with automated refills, and prescription upload', 'The OneHealth mobile app, launched 16 October 2026. Home puts every service one tap away; refills show the next charge and amount up front; checkout lets people switch on automated refills for each item as they shop; and uploading a prescription builds the cart for them.'),
+          img('onehealth', 'app', 'OneHealth app: home, managing refills, checkout with automated refills, and prescription upload', 'The OneHealth mobile app, now [live on the App Store](https://apps.apple.com/ng/app/onehealthng-online-pharmacy/id6443616382). Home puts every service one tap away; refills show the next charge and amount up front; checkout lets people switch on automated refills for each item as they shop; and uploading a prescription builds the cart for them.'),
           { type: 'h', title: 'A clinical quiz that feels simple', text: 'The Method is a doctor-led weight-loss programme, so its entry point is a medical assessment. The flow had to collect clinical information without feeling like a hospital form.' },
           img('onehealth', 'method-how', 'How The Method works: consultation, verified medication and delivery, ongoing support'),
           img('onehealth', 'method-breakdown', 'The Method programme breakdown', 'The Method explained in three steps, then each feature tied to a plain-language benefit.'),
@@ -68,7 +69,7 @@ export const caseStudies = [
             '**Whitepaper site:** the Webflow whitepaper I designed and built increased site traffic by 10%.',
             '**OneWellness:** UX improvements to the OneWellness app raised engagement by 35%.',
             '**Cross-platform redesign:** a modernised brand and experience across the website, core mobile app and Pillfinda.',
-            '**Mobile app:** the OneHealth mobile app launched on 16 October 2026. Results will be added once there is data.',
+            '**Mobile app:** the OneHealth mobile app is [live on the App Store](https://apps.apple.com/ng/app/onehealthng-online-pharmacy/id6443616382). Results will be added once there is data.',
           ] },
         ],
       },

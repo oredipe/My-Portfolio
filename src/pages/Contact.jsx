@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { profile } from '../data/profile.js'
 import { useTitle } from '../useTitle.js'
+import { ArtCluster } from '../components/Art.jsx'
 import { PDF } from './Resume.jsx'
 
 export default function Contact() {
@@ -19,7 +20,8 @@ export default function Contact() {
 
   return (
     <div className="wrap">
-      <header className="page-head">
+      <header className="page-head has-art">
+        <ArtCluster className="art-head" variant="c" />
         <h1 className="page-title">Contact</h1>
         <p className="page-lede">
           I'm open to senior product design roles and to freelance projects. Email is the quickest way to reach me.

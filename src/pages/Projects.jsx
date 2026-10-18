@@ -3,6 +3,7 @@ import { Link, useLocation, useSearchParams } from 'react-router-dom'
 import { caseStudies, gallery, typeOf } from '../data/caseStudies.js'
 import Shot from '../components/Shot.jsx'
 import { useTitle } from '../useTitle.js'
+import { Arrow, ArtCluster } from '../components/Art.jsx'
 
 const filters = ['All', 'Mobile apps', 'Websites', 'Web apps']
 
@@ -22,7 +23,8 @@ export default function Projects() {
 
   return (
     <div className="wrap">
-      <header className="page-head">
+      <header className="page-head has-art">
+        <ArtCluster className="art-head" variant="b" />
         <h1 className="page-title">Work</h1>
         <p className="page-lede">
           Eight case studies and five shorter projects, from 2021 to now. Most were shipped; the ones that weren't say so.
@@ -53,6 +55,7 @@ export default function Projects() {
                   <h3 className="card-name">{c.name}</h3>
                   <p className="card-title">{c.title}</p>
                   <p className="card-meta">{c.platforms.join(', ')}. {c.industry}, {c.years}.</p>
+                  <span className="card-go">View case study <Arrow size={16} /></span>
                 </Link>
               </li>
             ))}

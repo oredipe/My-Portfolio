@@ -1,4 +1,5 @@
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import { BackArrow } from '../components/Art.jsx'
 import { caseStudies } from '../data/caseStudies.js'
 import RichText from '../components/RichText.jsx'
 import Shot from '../components/Shot.jsx'
@@ -9,7 +10,7 @@ function Figure({ b }) {
   return (
     <figure className="figure">
       <Shot k={b.key} alt={b.alt} />
-      {b.caption && <figcaption>{b.caption}</figcaption>}
+      {b.caption && <figcaption><RichText text={b.caption} /></figcaption>}
     </figure>
   )
 }
@@ -33,7 +34,7 @@ function Block({ b }) {
           <div className="pair">
             {b.items.map((it) => <Shot key={it.key} k={it.key} alt={it.alt} />)}
           </div>
-          {b.caption && <figcaption>{b.caption}</figcaption>}
+          {b.caption && <figcaption><RichText text={b.caption} /></figcaption>}
         </figure>
       )
     case 'list':
@@ -67,6 +68,26 @@ function Block({ b }) {
   }
 }
 
+// Goes back to wherever the reader came from on this site, or to the work page if they arrived directly.
+function BackLink({ className = '' }) {
+  const navigate = useNavigate()
+  const fromSite = (window.history.state?.idx ?? 0) > 0
+  return (
+    <Link
+      to="/projects"
+      className={`back-link ${className}`}
+      onClick={(e) => {
+        if (fromSite) {
+          e.preventDefault()
+          navigate(-1)
+        }
+      }}
+    >
+      <BackArrow /> {fromSite ? 'Back' : 'All work'}
+    </Link>
+  )
+}
+
 export default function CaseStudy() {
   const { slug } = useParams()
   const i = caseStudies.findIndex((c) => c.slug === slug)
@@ -81,7 +102,10 @@ export default function CaseStudy() {
   return (
     <article className="cs">
       <header className="cs-head wrap">
-        <p className="crumb"><Link to="/projects">Work</Link> / {c.name}</p>
+        <div className="cs-topbar">
+          <BackLink />
+          <p className="crumb"><Link to="/projects">Work</Link> / {c.name}</p>
+        </div>
         <h1 className="cs-title">{c.name}: {c.title.charAt(0).toLowerCase() + c.title.slice(1)}</h1>
         <div className="cs-intro-grid">
           <p className="cs-intro">{c.intro}</p>
@@ -106,6 +130,10 @@ export default function CaseStudy() {
             })}
           </section>
         ))}
+      </div>
+
+      <div className="wrap cs-end">
+        <Link to="/projects" className="back-link"><BackArrow /> All work</Link>
       </div>
 
       <nav className="next wrap" aria-label="Next case study">
