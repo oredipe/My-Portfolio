@@ -86,17 +86,3 @@ export function ArtCluster({ className = '', variant = 'a' }) {
     </svg>
   )
 }
-
-// A ring of motifs around a portrait or monogram.
-export function PortraitFrame({ children }) {
-  return (
-    <div className="portrait">
-      <svg className="portrait-ring art" viewBox="0 0 200 200" aria-hidden="true">
-        <circle cx="100" cy="100" r="96" />
-        <circle cx="100" cy="100" r="89" strokeDasharray="1.5 6" strokeLinecap="round" />
-        <circle cx="168" cy="38" r="8" className="art-sun" />
-      </svg>
-      <div className="portrait-inner">{children}</div>
-    </div>
-  )
-}

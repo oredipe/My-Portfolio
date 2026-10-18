@@ -2,149 +2,125 @@ import { useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { caseStudies, gallery } from '../data/caseStudies.js'
 import Shot from '../components/Shot.jsx'
-import { Arrow, ArtCluster, PortraitFrame } from '../components/Art.jsx'
+import { Arrow, ArtCluster } from '../components/Art.jsx'
 import { useTitle } from '../useTitle.js'
 
-// Which hero and case-study layout the live site uses. The preview build shows a switcher
-// so the options can be compared; once one is picked, set it here.
+// Which hero the live site uses. The preview build shows a switcher so the two options
+// can be compared; once one is picked, set it here.
 const DEFAULT_HERO = 'a'
-const DEFAULT_LIST = 'a'
 const SHOW_SWITCHER = Boolean(import.meta.env.VITE_HASH_ROUTER)
 
 const byslug = Object.fromEntries(caseStudies.map((c) => [c.slug, c]))
 
-// The three things people use my work for, each linked to the case study behind it.
-const verbs = [
-  ['onehealthng', 'get their medicines'],
-  ['casha-business', 'pay their staff'],
-  ['reelcruit', 'find their next job'],
-]
-
-// A different view from the case study covers further down the page.
-const previewShot = {
-  onehealthng: 'onehealth/hero',
-  'casha-business': 'casha/payroll',
-  reelcruit: 'reelcruit/matches',
-}
-
 const clients = ['OneHealthNG', 'Reelcruit', 'iWello', 'Casha Microfinance Bank', 'QShelter', 'Fixiconn']
 
-function Statement({ active, setActive, small = false }) {
-  return (
-    <h1 className={`hero-statement ${small ? 'is-small' : ''}`}>
-      I design the apps people in Nigeria use to{' '}
-      {verbs.map(([slug, words], i) => (
-        <span key={slug}>
-          <Link
-            to={`/projects/${slug}`}
-            className={`hero-verb ${active === slug ? 'is-on' : ''}`}
-            onMouseEnter={() => setActive(slug)}
-            onFocus={() => setActive(slug)}
-          >
-            {words}
-          </Link>
-          {i === 0 ? ', ' : i === 1 ? ' and ' : '.'}
-        </span>
-      ))}
-    </h1>
-  )
-}
+// One tile per industry, so the first screen shows range rather than one sector.
+const mosaic = [
+  { slug: 'onehealthng', shot: 'onehealth/app', label: 'Healthtech' },
+  { slug: 'casha-business', shot: 'casha/hero', label: 'Fintech' },
+  { slug: 'reelcruit', shot: 'reelcruit/audiences', label: 'Recruitment and AI' },
+  { slug: 'qshelter', shot: 'qshelter/property', label: 'Property' },
+  { slug: 'zygomed', shot: 'zygomed/landing', label: 'E-commerce' },
+]
 
-function Actions() {
+const sectors = [
+  { name: 'Healthtech', projects: ['onehealthng', 'iwello'], shot: 'onehealth/app' },
+  { name: 'Fintech', projects: ['casha-business', 'naijafxrates'], shot: 'casha/hero' },
+  { name: 'Recruitment and AI', projects: ['reelcruit'], shot: 'reelcruit/audiences' },
+  { name: 'Property', projects: ['qshelter'], shot: 'qshelter/property' },
+  { name: 'E-commerce', projects: ['zygomed'], shot: 'zygomed/landing' },
+]
+
+function HeroText() {
   return (
-    <div className="actions">
-      <Link className="btn" to="/projects">See the work</Link>
-      <Link className="btn btn-quiet" to="/resume">Read my resume</Link>
+    <div className="hero-text">
+      <p className="hello">Hi, I'm Larry.</p>
+      <h1 className="hero-statement">I design products that make complicated things simple.</h1>
+      <p className="hero-sub">
+        Senior product designer in Lagos. For five years I've designed websites, web apps and mobile apps for healthcare,
+        banking, hiring, property and retail, for teams in Nigeria and Canada. I lead design at OneHealthNG.
+      </p>
+      <div className="actions">
+        <Link className="btn" to="/projects">See the work</Link>
+        <Link className="btn btn-quiet" to="/resume">Read my resume</Link>
+      </div>
     </div>
   )
 }
 
-/* Hero A: the statement, with a live preview of whichever project the reader points at. */
-function HeroA() {
-  const [active, setActive] = useState('onehealthng')
-  const preview = byslug[active]
+function Clients() {
   return (
-    <section className="hero hero-a wrap">
-      <div className="hero-text">
-        <Statement active={active} setActive={setActive} />
-        <p className="hero-sub">
-          I'm Olanrewaju Oredipe, a senior product designer in Lagos with five years of work across healthtech, fintech,
-          e-commerce and AI. I lead design at OneHealthNG.
-        </p>
-        <Actions />
-      </div>
-      <div className="hero-visual">
-        <ArtCluster className="art-hero" variant="a" />
-        <Link to={`/projects/${preview.slug}`} className="hero-preview" aria-label={`${preview.name} case study`}>
-          <Shot k={previewShot[preview.slug]} alt={`${preview.name}: ${preview.title}`} eager />
-          <span className="hero-preview-cap">
-            <span><strong>{preview.name}</strong>. {preview.proof}</span>
-            <span className="circle-btn" aria-hidden="true"><Arrow /></span>
-          </span>
-        </Link>
-      </div>
-    </section>
-  )
-}
-
-/* Hero B: a fanned stack of three projects; pointing at a phrase brings its card forward. */
-function HeroB() {
-  const [active, setActive] = useState('onehealthng')
-  return (
-    <section className="hero hero-b wrap">
-      <div className="hero-text">
-        <p className="hello">Hi, I'm Larry.</p>
-        <Statement active={active} setActive={setActive} />
-        <p className="hero-sub">
-          Senior product designer in Lagos. Five years across healthtech, fintech, e-commerce and AI, currently leading
-          design at OneHealthNG.
-        </p>
-        <Actions />
-      </div>
-      <div className="fan" aria-label="Featured projects">
-        <ArtCluster className="art-fan" variant="b" />
-        {verbs.map(([slug], i) => (
-          <Link
-            key={slug}
-            to={`/projects/${slug}`}
-            className={`fan-card fan-${i} ${active === slug ? 'is-on' : ''}`}
-            onMouseEnter={() => setActive(slug)}
-            onFocus={() => setActive(slug)}
-          >
-            <Shot k={previewShot[slug]} alt="" eager />
-            <span className="fan-label">{byslug[slug].name}</span>
-          </Link>
-        ))}
-      </div>
-    </section>
-  )
-}
-
-/* Hero C: a personal introduction with a portrait, and the teams I've designed for. */
-function HeroC() {
-  const [active, setActive] = useState(null)
-  return (
-    <section className="hero hero-c wrap">
-      <div className="hero-c-top">
-        <PortraitFrame>
-          {/* Replace with <img src="/images/larry.webp" alt="Olanrewaju Oredipe" /> once there's a photo. */}
-          <span className="monogram" aria-hidden="true">LO</span>
-        </PortraitFrame>
-        <div>
-          <p className="hello">Olanrewaju Oredipe, Larry to most people</p>
-          <p className="hello-role">Senior Product Designer, Lagos</p>
-        </div>
-      </div>
-      <Statement active={active} setActive={setActive} small />
-      <Actions />
+    <div className="wrap">
       <div className="clients">
         <p className="clients-label">Teams I've designed for</p>
         <ul className="clients-list">
           {clients.map((c) => <li key={c}>{c}</li>)}
         </ul>
       </div>
-      <ArtCluster className="art-c" variant="c" />
-    </section>
+    </div>
+  )
+}
+
+/* Hero A: a mosaic with one project from each industry. */
+function HeroA() {
+  return (
+    <>
+      <section className="hero hero-a wrap">
+        <HeroText />
+        <div className="mosaic-wrap">
+          <ArtCluster className="art-hero" variant="a" />
+          <ul className="mosaic" aria-label="A project from each industry">
+            {mosaic.map((m, i) => (
+              <li key={m.slug} className={`tile tile-${i}`}>
+                <Link to={`/projects/${m.slug}`} aria-label={`${byslug[m.slug].name}, ${m.label}`}>
+                  <Shot k={m.shot} alt="" eager />
+                  <span className="tile-tag">
+                    <span className="tile-label">{m.label}</span>
+                    <span className="tile-name">{byslug[m.slug].name}</span>
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+      <Clients />
+    </>
+  )
+}
+
+/* Hero B: an index of the industries I've worked in, with the projects behind each. */
+function HeroB() {
+  const [on, setOn] = useState(0)
+  return (
+    <>
+      <section className="hero hero-b wrap">
+        <HeroText />
+        <div className="index-card">
+          <ArtCluster className="art-index" variant="b" />
+          <div className="index-shot">
+            <Shot k={sectors[on].shot} alt="" eager />
+          </div>
+          <ul className="index-list">
+            {sectors.map((s, i) => (
+              <li key={s.name}>
+                <Link
+                  to={`/projects/${s.projects[0]}`}
+                  className={`index-row ${on === i ? 'is-on' : ''}`}
+                  onMouseEnter={() => setOn(i)}
+                  onFocus={() => setOn(i)}
+                >
+                  <span className="index-name">{s.name}</span>
+                  <span className="index-projects">{s.projects.map((p) => byslug[p].name).join(', ')}</span>
+                  <Arrow size={16} />
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+      <Clients />
+    </>
   )
 }
 
@@ -180,53 +156,7 @@ function ListA({ items }) {
   )
 }
 
-/* List B: raised cards in a grid, with an arrow button on every card. */
-function ListB({ items }) {
-  return (
-    <ul className="list-b">
-      {items.map((c) => (
-        <li key={c.slug}>
-          <Link to={`/projects/${c.slug}`} className="lb-card">
-            <div className="lb-img"><Shot k={c.cover} alt="" /></div>
-            <div className="lb-body">
-              <p className="lb-kicker">{c.industry}, {c.years}</p>
-              <h3 className="lb-name">{c.name}</h3>
-              <p className="lb-title">{c.title}</p>
-              <p className="lb-proof">{c.proof}</p>
-            </div>
-            <div className="lb-foot">
-              <span>View case study</span>
-              <span className="circle-btn" aria-hidden="true"><Arrow /></span>
-            </div>
-          </Link>
-        </li>
-      ))}
-    </ul>
-  )
-}
-
-/* List C: big image tiles with the project name sitting on the image. */
-function ListC({ items }) {
-  return (
-    <ul className="list-c">
-      {items.map((c, i) => (
-        <li key={c.slug} className={i === 0 || (i === items.length - 1 && items.length % 2 === 0) ? 'lc-wide' : ''}>
-          <Link to={`/projects/${c.slug}`} className="lc-tile">
-            <div className="lc-img"><Shot k={c.cover} alt="" /></div>
-            <span className="lc-tag">
-              <span className="lc-name">{c.name}</span>
-              <span className="circle-btn" aria-hidden="true"><Arrow /></span>
-            </span>
-          </Link>
-          <p className="lc-title">{c.title}</p>
-          <p className="lc-meta">{c.proof}</p>
-        </li>
-      ))}
-    </ul>
-  )
-}
-
-function Switcher({ hero, list, set }) {
+function Switcher({ hero, set }) {
   const opt = (key, value, current, label) => (
     <button key={value} aria-pressed={current === value} onClick={() => set(key, value)}>{label}</button>
   )
@@ -235,11 +165,7 @@ function Switcher({ hero, list, set }) {
       <p className="switcher-title">Preview options</p>
       <div className="switcher-row">
         <span>Hero</span>
-        {opt('hero', 'a', hero, 'A')}{opt('hero', 'b', hero, 'B')}{opt('hero', 'c', hero, 'C')}
-      </div>
-      <div className="switcher-row">
-        <span>Case studies</span>
-        {opt('list', 'a', list, 'A')}{opt('list', 'b', list, 'B')}{opt('list', 'c', list, 'C')}
+        {opt('hero', 'a', hero, 'A')}{opt('hero', 'b', hero, 'B')}
       </div>
     </div>
   )
@@ -248,8 +174,7 @@ function Switcher({ hero, list, set }) {
 export default function Home() {
   useTitle()
   const [params, setParams] = useSearchParams()
-  const hero = SHOW_SWITCHER && ['a', 'b', 'c'].includes(params.get('hero')) ? params.get('hero') : DEFAULT_HERO
-  const list = SHOW_SWITCHER && ['a', 'b', 'c'].includes(params.get('list')) ? params.get('list') : DEFAULT_LIST
+  const hero = SHOW_SWITCHER && ['a', 'b'].includes(params.get('hero')) ? params.get('hero') : DEFAULT_HERO
   const set = (k, v) => {
     const next = new URLSearchParams(params)
     next.set(k, v)
@@ -258,8 +183,7 @@ export default function Home() {
 
   const featured = caseStudies.filter((c) => c.featured)
   const more = caseStudies.filter((c) => !c.featured)
-  const Hero = { a: HeroA, b: HeroB, c: HeroC }[hero]
-  const List = { a: ListA, b: ListB, c: ListC }[list]
+  const Hero = { a: HeroA, b: HeroB }[hero]
 
   return (
     <>
@@ -267,7 +191,7 @@ export default function Home() {
 
       <section className="wrap section">
         <h2 className="section-title">Selected case studies</h2>
-        <List items={featured} />
+        <ListA items={featured} />
       </section>
 
       <section className="wrap section more-cs">
@@ -291,7 +215,7 @@ export default function Home() {
         </p>
       </section>
 
-      {SHOW_SWITCHER && <Switcher hero={hero} list={list} set={set} />}
+      {SHOW_SWITCHER && <Switcher hero={hero} set={set} />}
     </>
   )
 }

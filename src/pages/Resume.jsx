@@ -24,7 +24,7 @@ export default function Resume() {
           <ul className="r-contact">
             <li>{profile.location}</li>
             <li><a href={`mailto:${profile.email}`}>{profile.email}</a></li>
-            <li>{profile.phone}</li>
+            <li>{profile.phone}, {profile.phone2}</li>
             <li><a href={profile.site}>orelan.xyz</a></li>
             <li><a href={profile.linkedin}>linkedin.com/in/olanrewaju-oredipe</a></li>
           </ul>

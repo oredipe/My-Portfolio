@@ -5,6 +5,7 @@ export const profile = {
   location: 'Lagos, Nigeria',
   email: 'orelan95@gmail.com',
   phone: '+234 701 235 0133',
+  phone2: '+234 808 019 0180',
   linkedin: 'https://linkedin.com/in/olanrewaju-oredipe',
   site: 'https://www.orelan.xyz',
 }
