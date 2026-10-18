@@ -422,9 +422,10 @@ td:first-child { font-weight: 550; white-space: nowrap; }
 @media (max-width: 900px) { .about-photo { max-width: 360px; } }
 
 /* Logo */
-.wordmark { display: inline-flex; align-items: center; gap: 10px; }
-.logo { flex: none; }
-.logo-tile { fill: var(--green); }
-.logo-rings { stroke: var(--paper); }
+.wordmark { display: inline-flex; align-items: center; }
+.logo-lockup { display: inline-flex; align-items: center; font-size: 25px; font-weight: 650; letter-spacing: -0.03em; line-height: 1; color: var(--ink); }
+.logo-mark { margin-right: -3px; transform: translateY(1px); }
+.logo-ring { stroke: var(--green); transition: stroke 160ms ease; }
 .logo-dot { fill: var(--sun); }
-.wordmark:hover .logo-tile { fill: var(--green-deep); }
+.wordmark:hover .logo-ring { stroke: var(--green-deep); }
+.wordmark:hover .logo-word { color: var(--ink); }

@@ -21,9 +21,8 @@ export default function Layout() {
       <a className="skip" href="#main">Skip to content</a>
       <header className="masthead">
         <div className="wrap masthead-row">
-          <Link to="/" className="wordmark" aria-label="Olanrewaju Oredipe, home">
+          <Link to="/" className="wordmark" aria-label="Orelan, Olanrewaju Oredipe's portfolio, home">
             <Logo />
-            <span>Olanrewaju Oredipe</span>
           </Link>
           <button className="menu-btn" aria-expanded={open} aria-controls="site-nav" onClick={() => setOpen(!open)}>
             {open ? 'Close' : 'Menu'}
