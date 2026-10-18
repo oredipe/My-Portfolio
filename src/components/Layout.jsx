@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import { profile } from '../data/profile.js'
 import { ArtCluster } from './Art.jsx'
+import Logo from './Logo.jsx'
 
 const nav = [
   ['/projects', 'Work'],
@@ -21,7 +22,8 @@ export default function Layout() {
       <header className="masthead">
         <div className="wrap masthead-row">
           <Link to="/" className="wordmark" aria-label="Olanrewaju Oredipe, home">
-            Olanrewaju Oredipe
+            <Logo />
+            <span>Olanrewaju Oredipe</span>
           </Link>
           <button className="menu-btn" aria-expanded={open} aria-controls="site-nav" onClick={() => setOpen(!open)}>
             {open ? 'Close' : 'Menu'}

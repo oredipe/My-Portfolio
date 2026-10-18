@@ -420,3 +420,11 @@ td:first-child { font-weight: 550; white-space: nowrap; }
 .about-photo { margin-bottom: 32px; border-radius: 20px; overflow: hidden; background: var(--green-wash); position: relative; }
 .about-photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
 @media (max-width: 900px) { .about-photo { max-width: 360px; } }
+
+/* Logo */
+.wordmark { display: inline-flex; align-items: center; gap: 10px; }
+.logo { flex: none; }
+.logo-tile { fill: var(--green); }
+.logo-rings { stroke: var(--paper); }
+.logo-dot { fill: var(--sun); }
+.wordmark:hover .logo-tile { fill: var(--green-deep); }

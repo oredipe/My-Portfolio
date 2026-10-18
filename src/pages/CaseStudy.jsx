@@ -92,7 +92,7 @@ export default function CaseStudy() {
   const { slug } = useParams()
   const i = caseStudies.findIndex((c) => c.slug === slug)
   const c = caseStudies[i]
-  useTitle(c ? c.name : 'Not found')
+  useTitle(c ? `${c.name}: ${c.title}` : 'Not found', c ? c.card : undefined)
   if (!c) return <NotFound />
   const next = caseStudies[(i + 1) % caseStudies.length]
 

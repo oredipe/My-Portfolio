@@ -8,7 +8,7 @@ import { useTitle } from '../useTitle.js'
 // Which hero the live site uses. The preview build shows a switcher so the two options
 // can be compared; once one is picked, set it here.
 const DEFAULT_HERO = 'b'
-const SHOW_SWITCHER = Boolean(import.meta.env.VITE_HASH_ROUTER)
+const SHOW_SWITCHER = false
 
 const byslug = Object.fromEntries(caseStudies.map((c) => [c.slug, c]))
 
@@ -33,8 +33,8 @@ const sectors = [
 
 // Headline options to compare in the preview. The live site uses the first one until another is picked.
 const headlines = [
-  'I design products that make complicated things simple.',
   "I design for the moments people can't afford to get wrong.",
+  'I design products that make complicated things simple.',
   'Clear products for complicated industries.',
   'Five years of turning messy problems into products people use.',
   'Product design for health, money, work and home.',
