@@ -28,7 +28,7 @@ export default function About() {
       <div className="about-grid">
         <div className="about-bio prose">
           <p className="lede">
-            I'm Olanrewaju Oredipe, Larry to most people. I'm a senior product designer in Lagos, and for five years I've designed
+            I'm Olanrewaju Oredipe, a senior product designer in Lagos, and for five years I've designed
             websites, web apps and mobile apps for products people rely on for their health, their money and their work.
           </p>
           <p>
@@ -49,6 +49,9 @@ export default function About() {
         </div>
 
         <aside className="about-side" aria-label="Experience">
+          <figure className="about-photo">
+            <img src={`${import.meta.env.BASE_URL}images/olanrewaju-portrait.webp`} alt="Olanrewaju Oredipe" width="800" height="1000" />
+          </figure>
           <h2 className="side-title">Experience</h2>
           <ol className="timeline">
             {resume.experience.map((e) => (

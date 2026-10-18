@@ -34,7 +34,10 @@ const sectors = [
 function HeroText() {
   return (
     <div className="hero-text">
-      <p className="hello">Hi, I'm Larry.</p>
+      <div className="hello-row">
+        <img className="avatar" src={`${import.meta.env.BASE_URL}images/olanrewaju-avatar.webp`} alt="Olanrewaju Oredipe" width="400" height="400" />
+        <p className="hello">Hi, I'm Olanrewaju.</p>
+      </div>
       <h1 className="hero-statement">I design products that make complicated things simple.</h1>
       <p className="hero-sub">
         Senior product designer in Lagos. For five years I've designed websites, web apps and mobile apps for healthcare,

@@ -412,3 +412,11 @@ td:first-child { font-weight: 550; white-space: nowrap; }
 .clients-label { font-size: 15px; color: var(--ink-2); }
 .clients-list { display: flex; flex-wrap: wrap; gap: 10px 40px; margin-top: 12px; font-size: clamp(18px, 2vw, 22px); font-weight: 600; color: var(--ink-2); letter-spacing: -0.01em; }
 @media (max-width: 720px) { .clients-list { gap: 8px 24px; font-size: 17px; } }
+
+/* Photo */
+.hello-row { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+.hello-row .hello { margin-bottom: 0; }
+.avatar { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 3px var(--paper), 0 0 0 4px var(--green); }
+.about-photo { margin-bottom: 32px; border-radius: 20px; overflow: hidden; background: var(--green-wash); position: relative; }
+.about-photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+@media (max-width: 900px) { .about-photo { max-width: 360px; } }

@@ -1,6 +1,6 @@
 export const profile = {
   name: 'Olanrewaju Oredipe',
-  short: 'Larry Oredipe',
+  short: 'Olanrewaju Oredipe',
   role: 'Senior Product Designer',
   location: 'Lagos, Nigeria',
   email: 'orelan95@gmail.com',
