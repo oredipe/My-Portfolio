@@ -334,7 +334,7 @@ td:first-child { font-weight: 550; white-space: nowrap; }
 .switcher { position: fixed; right: max(16px, env(safe-area-inset-right, 0px)); bottom: max(16px, env(safe-area-inset-bottom, 0px)); z-index: 20; background: var(--ink); color: var(--paper); border-radius: 16px; padding: 12px 14px; box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.5); font-size: 14px; display: grid; gap: 8px; }
 .switcher-title { font-weight: 600; color: #9fd3bc; }
 .switcher-row { display: flex; align-items: center; gap: 6px; }
-.switcher-row span { width: 92px; color: #c9d1cc; }
+.switcher-row span { width: 72px; color: #c9d1cc; }
 .switcher button { font: 600 14px/1 var(--sans); width: 34px; height: 30px; border-radius: 8px; border: 1px solid #3a4741; background: transparent; color: var(--paper); cursor: pointer; }
 .switcher button[aria-pressed='true'] { background: var(--paper); color: var(--ink); }
 

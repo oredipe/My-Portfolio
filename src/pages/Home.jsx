@@ -7,7 +7,7 @@ import { useTitle } from '../useTitle.js'
 
 // Which hero the live site uses. The preview build shows a switcher so the two options
 // can be compared; once one is picked, set it here.
-const DEFAULT_HERO = 'a'
+const DEFAULT_HERO = 'b'
 const SHOW_SWITCHER = Boolean(import.meta.env.VITE_HASH_ROUTER)
 
 const byslug = Object.fromEntries(caseStudies.map((c) => [c.slug, c]))
@@ -31,14 +31,23 @@ const sectors = [
   { name: 'E-commerce', projects: ['zygomed'], shot: 'zygomed/landing' },
 ]
 
-function HeroText() {
+// Headline options to compare in the preview. The live site uses the first one until another is picked.
+const headlines = [
+  'I design products that make complicated things simple.',
+  "I design for the moments people can't afford to get wrong.",
+  'Clear products for complicated industries.',
+  'Five years of turning messy problems into products people use.',
+  'Product design for health, money, work and home.',
+]
+
+function HeroText({ h = 0 }) {
   return (
     <div className="hero-text">
       <div className="hello-row">
         <img className="avatar" src={`${import.meta.env.BASE_URL}images/olanrewaju-avatar.webp`} alt="Olanrewaju Oredipe" width="400" height="400" />
         <p className="hello">Hi, I'm Olanrewaju.</p>
       </div>
-      <h1 className="hero-statement">I design products that make complicated things simple.</h1>
+      <h1 className="hero-statement">{headlines[h]}</h1>
       <p className="hero-sub">
         Senior product designer in Lagos. For five years I've designed websites, web apps and mobile apps for healthcare,
         banking, hiring, property and retail, for teams in Nigeria and Canada. I lead design at OneHealthNG.
@@ -93,12 +102,12 @@ function HeroA() {
 }
 
 /* Hero B: an index of the industries I've worked in, with the projects behind each. */
-function HeroB() {
+function HeroB({ h }) {
   const [on, setOn] = useState(0)
   return (
     <>
       <section className="hero hero-b wrap">
-        <HeroText />
+        <HeroText h={h} />
         <div className="index-card">
           <ArtCluster className="art-index" variant="b" />
           <div className="index-shot">
@@ -167,8 +176,8 @@ function Switcher({ hero, set }) {
     <div className="switcher" role="group" aria-label="Compare layout options">
       <p className="switcher-title">Preview options</p>
       <div className="switcher-row">
-        <span>Hero</span>
-        {opt('hero', 'a', hero, 'A')}{opt('hero', 'b', hero, 'B')}
+        <span>Headline</span>
+        {headlines.map((_, i) => opt('h', String(i + 1), hero, String(i + 1)))}
       </div>
     </div>
   )
@@ -177,7 +186,7 @@ function Switcher({ hero, set }) {
 export default function Home() {
   useTitle()
   const [params, setParams] = useSearchParams()
-  const hero = SHOW_SWITCHER && ['a', 'b'].includes(params.get('hero')) ? params.get('hero') : DEFAULT_HERO
+  const hero = String(Math.min(Math.max(parseInt(params.get('h') || '1', 10) || 1, 1), 5))
   const set = (k, v) => {
     const next = new URLSearchParams(params)
     next.set(k, v)
@@ -186,11 +195,11 @@ export default function Home() {
 
   const featured = caseStudies.filter((c) => c.featured)
   const more = caseStudies.filter((c) => !c.featured)
-  const Hero = { a: HeroA, b: HeroB }[hero]
+  const Hero = { a: HeroA, b: HeroB }[DEFAULT_HERO]
 
   return (
     <>
-      <Hero />
+      <Hero h={SHOW_SWITCHER ? Number(hero) - 1 : 0} />
 
       <section className="wrap section">
         <h2 className="section-title">Selected case studies</h2>
