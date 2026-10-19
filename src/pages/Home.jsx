@@ -4,6 +4,7 @@ import { caseStudies, gallery } from '../data/caseStudies.js'
 import Shot from '../components/Shot.jsx'
 import { Arrow, ArtCluster } from '../components/Art.jsx'
 import Devices from '../components/Devices.jsx'
+import { quotes } from '../data/testimonials.js'
 import { HeroTypeC, HeroTypeCTop, HeroTypeD, HeroTypeE } from '../components/HeroType.jsx'
 import { useTitle } from '../useTitle.js'
 
@@ -335,6 +336,26 @@ export default function Home() {
       <section className="wrap section" id="work">
         <h2 className="section-title">Selected case studies</h2>
         <Work items={featured} />
+      </section>
+
+      <section className="kind-words" aria-labelledby="kind-words-title">
+        <div className="wrap">
+          <h2 className="section-title" id="kind-words-title">What people I've worked with say</h2>
+          <ul className="kw-list">
+            {quotes.map(({ q, name, role }, i) => (
+              <li key={name} className={`kw kw-${i}`}>
+                <figure>
+                  <span className="kw-mark" aria-hidden="true">“</span>
+                  <blockquote><p>{q}</p></blockquote>
+                  <figcaption>
+                    <span className="kw-avatar" aria-hidden="true">{name.split(' ').map((w) => w[0]).join('')}</span>
+                    <span className="kw-who"><strong>{name}</strong><span>{role}</span></span>
+                  </figcaption>
+                </figure>
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
 
       <section className="wrap section more-cs">

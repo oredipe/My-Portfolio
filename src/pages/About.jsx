@@ -1,5 +1,6 @@
 import { Link, useSearchParams } from 'react-router-dom'
 import { resume } from '../data/profile.js'
+import { quotes } from '../data/testimonials.js'
 import { useTitle } from '../useTitle.js'
 import { ArtCluster } from '../components/Art.jsx'
 
@@ -14,11 +15,6 @@ const principles = [
   ['Be straight about results', "My case studies only claim numbers I can back up, call team results team results, and say when a product never launched."],
 ]
 
-const quotes = [
-  ['You did good on the design, here is our report after analysis… we do not take you for granted, ever.', 'Ralph François, founder, Reelcruit'],
-  ["You clearly understood the problem almost like you read my mind, you've put into account cases I hadn't even considered.", 'Tolu Araba, Product Manager'],
-  ['We are really very happy with your work… Thank you again for your great work.', 'Thibaut Segeral, founder, Sociall.ai'],
-]
 
 export default function About() {
   const [params, setParams] = useSearchParams()
@@ -87,7 +83,7 @@ export default function About() {
       <section className="section">
         <h2 className="section-title">What people I've worked with say</h2>
         <div className="quotes">
-          {quotes.map(([q, by]) => (
+          {quotes.map(({ q, by }) => (
             <blockquote key={by} className="quote">
               <p>“{q}”</p>
               <footer>{by}</footer>

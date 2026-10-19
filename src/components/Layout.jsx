@@ -19,7 +19,7 @@ export default function Layout() {
   // Gentle reveal as blocks scroll into view. Runs per page; skipped when people prefer less motion.
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return
-    const sel = '.la-item, .w1 > li, .w2-list li, .w3 > li, .w4 > li, .row-list li, .card-grid li, .gallery-item, .figure, .principle, .quotes .quote, .r-job, .next, .about-photo, .timeline li'
+    const sel = '.la-item, .kw-list > li, .w1 > li, .w2-list li, .w3 > li, .w4 > li, .row-list li, .card-grid li, .gallery-item, .figure, .principle, .quotes .quote, .r-job, .next, .about-photo, .timeline li'
     const els = [...document.querySelectorAll(sel)].filter((el) => el.getBoundingClientRect().top > window.innerHeight * 0.92)
     const io = new IntersectionObserver(
       (entries) => entries.forEach((e) => {
