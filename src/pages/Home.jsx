@@ -183,7 +183,104 @@ function ListA({ items }) {
   )
 }
 
-function Switcher({ hero, set }) {
+
+/* Work 1: two big image cards per row. Name and one line under each, nothing else. */
+function ListW1({ items }) {
+  return (
+    <ul className="w1">
+      {items.map((c) => (
+        <li key={c.slug}>
+          <Link to={`/projects/${c.slug}`} className="w1-item">
+            <div className="w1-img"><Shot k={c.cover} alt="" /></div>
+            <div className="w1-text">
+              <h3 className="w1-name">{c.name}</h3>
+              <span className="w1-meta">{c.industry}, {c.years}</span>
+            </div>
+            <p className="w1-title">{c.title}</p>
+          </Link>
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+/* Work 2: a numbered index. Text only; the screen appears beside the row you point at. */
+function ListW2({ items }) {
+  const [on, setOn] = useState(0)
+  return (
+    <div className="w2">
+      <ol className="w2-list">
+        {items.map((c, i) => (
+          <li key={c.slug}>
+            <Link
+              to={`/projects/${c.slug}`}
+              className={`w2-row ${on === i ? 'is-on' : ''}`}
+              onMouseEnter={() => setOn(i)}
+              onFocus={() => setOn(i)}
+            >
+              <span className="w2-num">{String(i + 1).padStart(2, '0')}</span>
+              <span className="w2-name">{c.name}</span>
+              <span className="w2-meta">{c.industry}</span>
+              <span className="w2-thumb"><Shot k={c.cover} alt="" /></span>
+              <Arrow size={20} />
+            </Link>
+          </li>
+        ))}
+      </ol>
+      <div className="w2-preview" aria-hidden="true">
+        {items.map((c, i) => (
+          <div key={c.slug} className={`w2-shot ${on === i ? 'is-on' : ''}`}><Shot k={c.cover} alt="" /></div>
+        ))}
+        <p className="w2-caption">{items[on].title}</p>
+      </div>
+    </div>
+  )
+}
+
+/* Work 3: one wide image per study, with a single caption line under it. */
+function ListW3({ items }) {
+  return (
+    <ul className="w3">
+      {items.map((c) => (
+        <li key={c.slug}>
+          <Link to={`/projects/${c.slug}`} className="w3-item">
+            <div className="w3-img">
+              <Shot k={c.cover} alt="" />
+              <span className="w3-chip">{c.industry}</span>
+            </div>
+            <div className="w3-line">
+              <h3 className="w3-name">{c.name}</h3>
+              <p className="w3-title">{c.title}</p>
+              <p className="w3-proof">{c.proof}</p>
+            </div>
+          </Link>
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+/* Work 4: tall cards; the words sit on the image and the one-line summary slides up on hover. */
+function ListW4({ items }) {
+  return (
+    <ul className="w4">
+      {items.map((c) => (
+        <li key={c.slug}>
+          <Link to={`/projects/${c.slug}`} className="w4-item">
+            <Shot k={c.cover} alt="" />
+            <div className="w4-over">
+              <span className="w4-meta">{c.industry}</span>
+              <h3 className="w4-name">{c.name}</h3>
+              <p className="w4-title">{c.title}</p>
+            </div>
+          </Link>
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+function Switcher({ hero, list, set }) {
   const opt = (key, value, current, label) => (
     <button key={value} aria-pressed={current === value} onClick={() => set(key, value)}>{label}</button>
   )
@@ -194,6 +291,10 @@ function Switcher({ hero, set }) {
         <span>Hero</span>
         {opt('hero', 'b', hero, 'Now')}{opt('hero', 'c', hero, 'C low')}{opt('hero', 'c2', hero, 'C top')}{opt('hero', 'd', hero, 'D')}{opt('hero', 'e', hero, 'E')}
       </div>
+      <div className="switcher-row">
+        <span>Work</span>
+        {opt('list', 'a', list, 'Now')}{opt('list', '1', list, '1')}{opt('list', '2', list, '2')}{opt('list', '3', list, '3')}{opt('list', '4', list, '4')}
+      </div>
     </div>
   )
 }
@@ -202,6 +303,8 @@ export default function Home() {
   useTitle()
   const [params, setParams] = useSearchParams()
   const hero = SHOW_SWITCHER && ['b', 'c', 'c2', 'd', 'e'].includes(params.get('hero')) ? params.get('hero') : DEFAULT_HERO
+  const list = SHOW_SWITCHER && ['a', '1', '2', '3', '4'].includes(params.get('list')) ? params.get('list') : SHOW_SWITCHER ? '1' : 'a'
+  const Work = { a: ListA, 1: ListW1, 2: ListW2, 3: ListW3, 4: ListW4 }[list]
   const set = (k, v) => {
     const next = new URLSearchParams(params)
     next.set(k, v)
@@ -219,7 +322,7 @@ export default function Home() {
 
       <section className="wrap section" id="work">
         <h2 className="section-title">Selected case studies</h2>
-        <ListA items={featured} />
+        <Work items={featured} />
       </section>
 
       <section className="wrap section more-cs">
@@ -243,7 +346,7 @@ export default function Home() {
         </p>
       </section>
 
-      {SHOW_SWITCHER && <Switcher hero={hero} set={set} />}
+      {SHOW_SWITCHER && <Switcher hero={hero} list={list} set={set} />}
     </>
   )
 }
