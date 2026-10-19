@@ -577,3 +577,6 @@ td:first-child { font-weight: 550; white-space: nowrap; }
   .th-c .te-portrait { left: 50%; top: 0; bottom: auto; height: 400px; opacity: 0.62; }
   .th-c .th-grid { padding-top: 290px; }
 }
+/* Portrait centred behind all of hero C, as in the reference */
+.th-c .te-portrait { left: 50%; height: min(100%, 980px); }
+@media (max-width: 900px) { .th-c .te-portrait { left: 50%; top: auto; bottom: 0; height: 92%; opacity: 0.55; } .th-c .th-grid { padding-top: 36px; } }
