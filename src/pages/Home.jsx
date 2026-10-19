@@ -201,7 +201,7 @@ function Switcher({ hero, set }) {
 export default function Home() {
   useTitle()
   const [params, setParams] = useSearchParams()
-  const hero = SHOW_SWITCHER && ['b', 'c', 'c2', 'd', 'e'].includes(params.get('hero')) ? params.get('hero') : SHOW_SWITCHER ? 'c2' : DEFAULT_HERO
+  const hero = SHOW_SWITCHER && ['b', 'c', 'c2', 'd', 'e'].includes(params.get('hero')) ? params.get('hero') : DEFAULT_HERO
   const set = (k, v) => {
     const next = new URLSearchParams(params)
     next.set(k, v)
