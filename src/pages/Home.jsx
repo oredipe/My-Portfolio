@@ -220,10 +220,10 @@ function ListW1({ items }) {
           <Link to={`/projects/${c.slug}`} className="w1-item">
             <div className="w1-img"><Devices slug={c.slug} fallback={c.cover} /></div>
             <div className="w1-text">
+              <p className="w1-meta">{c.industry} <span aria-hidden="true">·</span> {c.years}</p>
               <h3 className="w1-name">{c.name}</h3>
-              <span className="w1-meta">{c.industry}, {c.years}</span>
+              <p className="w1-title">{c.title}</p>
             </div>
-            <p className="w1-title">{c.title}</p>
           </Link>
         </li>
       ))}
@@ -330,7 +330,7 @@ export default function Home() {
   useTitle()
   const [params, setParams] = useSearchParams()
   const hero = SHOW_SWITCHER && ['b', 'c', 'c2', 'd', 'e'].includes(params.get('hero')) ? params.get('hero') : DEFAULT_HERO
-  const list = SHOW_SWITCHER && ['a', '1', '2', '3', '4'].includes(params.get('list')) ? params.get('list') : SHOW_SWITCHER ? '1' : 'a'
+  const list = SHOW_SWITCHER && ['a', '1', '2', '3', '4'].includes(params.get('list')) ? params.get('list') : '1'
   const Work = { a: ListA, 1: ListW1, 2: ListW2, 3: ListW3, 4: ListW4 }[list]
   const set = (k, v) => {
     const next = new URLSearchParams(params)

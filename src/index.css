@@ -710,3 +710,8 @@ td:first-child { font-weight: 550; white-space: nowrap; }
 .w1-item:hover .stage-phones-only .dev-phone-1, .w3-item:hover .stage-phones-only .dev-phone-1 { transform: translateY(-8cqb); }
 @media (max-width: 900px) { .w3-img .stage { height: 62vw; } }
 @media (prefers-reduced-motion: reduce) { .dev-laptop, .dev-phone { transition: none; } }
+/* Concept 1: meta sits as a small label right above the name, all left-aligned */
+.w1-text { display: block; margin-top: 18px; }
+.w1-meta { margin: 0 0 6px; font-size: 13px; font-weight: 550; letter-spacing: 0.04em; text-transform: uppercase; color: var(--green, #0f6e4e); white-space: normal; }
+.w1-meta span { margin: 0 4px; color: var(--ink-2); }
+.w1-title { margin-top: 6px; }
