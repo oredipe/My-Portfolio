@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { Link, useLocation, useSearchParams } from 'react-router-dom'
 import { caseStudies, gallery, typeOf } from '../data/caseStudies.js'
 import Shot from '../components/Shot.jsx'
+import Devices from '../components/Devices.jsx'
 import { useTitle } from '../useTitle.js'
 import { Arrow, ArtCluster } from '../components/Art.jsx'
 
@@ -51,7 +52,7 @@ export default function Projects() {
             {studies.map((c) => (
               <li key={c.slug}>
                 <Link to={`/projects/${c.slug}`} className="card">
-                  <div className="card-img"><Shot k={c.cover} alt="" /></div>
+                  <div className="card-img"><Devices slug={c.slug} fallback={c.cover} /></div>
                   <h3 className="card-name">{c.name}</h3>
                   <p className="card-title">{c.title}</p>
                   <p className="card-meta">{c.platforms.join(', ')}. {c.industry}, {c.years}.</p>

@@ -117,7 +117,7 @@ a:hover { color: var(--green); text-decoration-color: currentColor; }
 /* Case study cards */
 .card-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px 32px; margin-top: 24px; }
 .card { display: block; text-decoration: none; color: var(--ink); }
-.card-img .shot { border-radius: 12px; aspect-ratio: 16 / 10; object-fit: cover; object-position: center top; width: 100%; background: var(--paper-2); }
+.card-img > .shot { border-radius: 12px; aspect-ratio: 16 / 10; object-fit: cover; object-position: center top; width: 100%; background: var(--paper-2); }
 .card-name { margin-top: 18px; font-size: 24px; font-weight: 600; letter-spacing: -0.01em; }
 .card:hover .card-name { color: var(--green); }
 .card-title { margin-top: 4px; font-family: var(--serif); font-size: 19px; line-height: 1.35; }
@@ -715,3 +715,17 @@ td:first-child { font-weight: 550; white-space: nowrap; }
 .w1-meta { margin: 0 0 6px; font-size: 13px; font-weight: 550; letter-spacing: 0.04em; text-transform: uppercase; color: var(--green, #0f6e4e); white-space: normal; }
 .w1-meta span { margin: 0 4px; color: var(--ink-2); }
 .w1-title { margin-top: 6px; }
+.stage-blue { background: radial-gradient(80% 90% at 50% 100%, #cfdcf6, #e9effb 70%); }
+.stage-amber { background: radial-gradient(80% 90% at 50% 100%, #f5dcc0, #fbefe2 70%); }
+.stage-sky { background: radial-gradient(80% 90% at 50% 100%, #cde9f1, #e7f4f8 70%); }
+.stage-plum { background: radial-gradient(80% 90% at 50% 100%, #ddd3ef, #efeaf7 70%); }
+/* Work page cards */
+.card-img .stage { aspect-ratio: 16 / 10; border-radius: 12px; }
+.stage-n2 { --pw: min(26cqi, 40cqb); gap: 5cqi; }
+.card:hover .dev-laptop { transform: translateY(-1.4cqb); }
+.card:hover .dev-phone { transform: translateY(-2.4cqb); }
+.card:hover .stage-phones-only .dev-phone-1 { transform: translateY(-8cqb); }
+.card-img .stage-phones-only { --pw: min(22cqi, 33cqb); }
+.card-img .stage-phones-only .dev-phone-1 { transform: translateY(-3cqb); }
+.card-img .stage-phones-only .dev-phone-0, .card-img .stage-phones-only .dev-phone-2 { transform: translateY(3cqb); }
+.card:hover .card-img .stage-phones-only .dev-phone-1 { transform: translateY(-6cqb); }

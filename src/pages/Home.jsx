@@ -3,6 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom'
 import { caseStudies, gallery } from '../data/caseStudies.js'
 import Shot from '../components/Shot.jsx'
 import { Arrow, ArtCluster } from '../components/Art.jsx'
+import Devices from '../components/Devices.jsx'
 import { HeroTypeC, HeroTypeCTop, HeroTypeD, HeroTypeE } from '../components/HeroType.jsx'
 import { useTitle } from '../useTitle.js'
 
@@ -183,33 +184,6 @@ function ListA({ items }) {
   )
 }
 
-
-// Each featured study shown on the device it was designed for.
-const devices = {
-  onehealthng: { tone: 'green', laptop: 'mock/onehealth-ops', phones: ['mock/onehealth-refills'] },
-  'casha-business': { tone: 'lime', phones: ['mock/casha-0', 'mock/casha-1', 'mock/casha-2'] },
-  iwello: { tone: 'lilac', laptop: 'mock/iwello-web' },
-  reelcruit: { tone: 'navy', laptop: 'mock/reelcruit-web' },
-}
-
-function Devices({ slug, fallback }) {
-  const d = devices[slug]
-  if (!d) return <Shot k={fallback} alt="" />
-  const kind = d.laptop && d.phones ? 'combo' : d.laptop ? 'laptop-only' : 'phones-only'
-  return (
-    <div className={`stage stage-${d.tone} stage-${kind}`}>
-      {d.laptop && (
-        <div className="dev-laptop">
-          <div className="dev-screen"><Shot k={d.laptop} alt="" /></div>
-          <div className="dev-base" />
-        </div>
-      )}
-      {d.phones && d.phones.map((k, i) => (
-        <div key={k} className={`dev-phone dev-phone-${i}`}><Shot k={k} alt="" /></div>
-      ))}
-    </div>
-  )
-}
 
 /* Work 1: two big image cards per row. Name and one line under each, nothing else. */
 function ListW1({ items }) {
