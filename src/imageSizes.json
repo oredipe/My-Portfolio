@@ -202,5 +202,33 @@
 "gallery/priority": [
 2000,
 1312
+],
+"mock/iwello-web": [
+1792,
+1180
+],
+"mock/casha-0": [
+589,
+1279
+],
+"mock/onehealth-refills": [
+298,
+676
+],
+"mock/reelcruit-web": [
+1592,
+1130
+],
+"mock/onehealth-ops": [
+1728,
+1397
+],
+"mock/casha-2": [
+589,
+1279
+],
+"mock/casha-1": [
+590,
+1279
 ]
 }
