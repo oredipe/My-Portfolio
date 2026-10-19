@@ -463,7 +463,9 @@ td:first-child { font-weight: 550; white-space: nowrap; }
 @keyframes fade-up { to { opacity: 1; transform: none; } }
 
 /* Concept D: floating industry cards */
-.th-d .th-name { font-size: min(10.8vw, 9.6rem); }
+/* The name is sized to its own column (container units), so "Olanrewaju" always fits beside the floating cards. */
+.th-d .th-name { container-type: inline-size; font-size: min(10.8vw, 9.6rem); }
+.th-d .th-name .rise { font-size: min(var(--fit, 20.4cqi), 9.6rem); }
 .th-d .th-grid { grid-template-rows: auto auto 1fr auto; }
 .th-d .th-statement { grid-column: 1; grid-row: 2; justify-self: start; padding-top: 4px; }
 .float-field { grid-column: 2; grid-row: 1 / 4; position: relative; min-height: 420px; margin-right: calc(var(--gutter) * -0.5); }
@@ -512,3 +514,55 @@ td:first-child { font-weight: 550; white-space: nowrap; }
 .th-c .th-statement { grid-column: 2; grid-row: 2; padding-top: 8px; }
 .th-c .th-foot { grid-row: 4; }
 @media (max-width: 900px) { .th-c .th-name { font-size: min(14.8vw, 8rem); } .th-c .th-statement { grid-column: 1; grid-row: auto; } .th-c .th-foot { grid-row: auto; } }
+
+/* ---------- Hero concept E: toned portrait behind a three-line statement ---------- */
+@font-face { font-family: 'Bricolage Condensed'; font-style: normal; font-display: swap; font-weight: 200 800; font-stretch: 75% 100%; src: url('./assets/fonts/bricolage-grotesque-latin-wdth-normal.woff2') format('woff2-variations'); }
+.th-e { --sand: #d8cfb9; background: radial-gradient(120% 90% at 50% 20%, #26302a 0%, var(--night) 55%, #121714 100%); }
+.te-portrait { position: absolute; z-index: 0; left: 50%; bottom: 0; height: min(96%, 940px); width: auto; max-width: none; opacity: 0;
+  transform: translate3d(calc(-50% + var(--mx, 0) * -22px), calc(var(--my, 0) * -12px), 0) scale(1.04);
+  animation: te-portrait 1600ms cubic-bezier(0.2, 0.7, 0.1, 1) 100ms forwards;
+  -webkit-mask-image: linear-gradient(to bottom, #000 62%, transparent 98%); mask-image: linear-gradient(to bottom, #000 62%, transparent 98%); pointer-events: none; }
+@keyframes te-portrait { to { opacity: 0.62; scale: 0.962; } }
+.te-grid { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1fr); align-content: end; gap: 0; min-height: min(calc(100svh - 68px), 960px); padding-top: clamp(40px, 8vw, 120px); padding-bottom: clamp(20px, 2.4vw, 32px); }
+.te-lines { margin: 0; font-family: 'Bricolage Condensed', var(--sans); font-weight: 700; font-stretch: 75%; text-transform: uppercase; color: var(--sand); font-size: var(--fs); line-height: 0.9; letter-spacing: -0.035em; }
+.te-line { display: flex; align-items: center; gap: 0.12em; }
+.te-line .rise { display: inline-block; white-space: nowrap; padding-bottom: 0.02em; }
+.te-l2 { justify-content: flex-end; }
+.te-l3 { padding-left: 8%; }
+.te-card { flex: none; align-self: stretch; display: flex; flex-direction: column; justify-content: space-between; width: 1.32em; margin-block: 0.06em; padding: 0.09em 0.1em; border-radius: 6px; background: linear-gradient(160deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.015) 60%, rgba(216, 207, 185, 0.12)); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08); backdrop-filter: blur(6px); text-decoration: none; color: var(--sand); overflow: hidden; position: relative; transition: box-shadow 200ms ease, transform 300ms ease; }
+.te-card span { font-family: var(--sans); font-size: max(11px, 0.105em); font-weight: 600; line-height: 1.3; letter-spacing: 0.02em; font-family: var(--sans); position: relative; z-index: 1; }
+.te-card:hover { box-shadow: inset 0 0 0 1px var(--mint); transform: translateY(-3px); }
+.te-card-img .shot { position: absolute; inset: auto 0 0 0; height: 58%; width: 100%; object-fit: cover; object-position: center top; opacity: 0.55; filter: grayscale(1) sepia(0.35); transition: opacity 300ms ease, filter 300ms ease; }
+.te-card-img:hover .shot { opacity: 0.95; filter: none; }
+.te-arrow { flex: none; display: block; width: 0.62em; color: var(--sand); margin-left: 0.04em; }
+.te-arrow svg { display: block; width: 100%; height: auto; }
+.te-arrow:hover { color: var(--mint); }
+.th-e { --fs: min(10.4vw, 11rem); }
+.te-stack { position: relative; }
+.te-intro { position: absolute; left: 0; top: calc(var(--fs) * 1.02); max-width: 21rem; font-size: clamp(16px, 1.25vw, 19px); line-height: 1.45; color: var(--cream-2); }
+.te-foot { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 20px; margin-top: clamp(28px, 3.4vw, 48px); font-size: 15px; color: var(--cream-2); }
+.te-foot p { margin: 0; }
+.te-pill { display: flex; align-items: center; gap: 4px; padding: 5px; border-radius: 12px; background: rgba(18, 23, 20, 0.72); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08); backdrop-filter: blur(10px); }
+.te-pill a { padding: 9px 14px; border-radius: 8px; font-size: 14px; font-weight: 550; letter-spacing: 0.04em; text-transform: uppercase; color: var(--cream); text-decoration: none; transition: background 160ms ease; }
+.te-pill a:hover { background: rgba(255, 255, 255, 0.07); }
+.te-pill .te-talk { display: flex; align-items: center; gap: 9px; padding: 5px 14px 5px 5px; background: var(--sand); color: var(--night); }
+.te-pill .te-talk:hover { background: var(--mint); }
+.te-talk img { width: 28px; height: 28px; border-radius: 6px; object-fit: cover; }
+.te-scroll { justify-self: end; color: var(--cream-2); text-decoration: none; }
+.te-scroll:hover { color: var(--mint); }
+@media (max-width: 900px) {
+  .te-grid { min-height: 0; padding-top: 300px; }
+  .te-portrait { height: 440px; top: 0; bottom: auto; }
+  .th-e { --fs: min(13.6vw, 7rem); }
+  .te-stack { display: flex; flex-direction: column; }
+  .te-l2 { justify-content: flex-start; } .te-l3 { padding-left: 0; }
+  .te-card { width: 1.5em; } .te-card span { font-size: 10.5px; }
+  .te-intro { position: static; margin: 0 0 22px; order: -1; max-width: 30rem; color: var(--cream); }
+  .te-foot { grid-template-columns: 1fr; justify-items: start; }
+  .te-scroll { display: none; }
+  .te-pill { flex-wrap: wrap; }
+}
+@media (max-width: 520px) { .te-card { display: none; } .th-e { --fs: 15.4vw; } .te-pill a { padding: 9px 10px; font-size: 13px; } }
+@media (prefers-reduced-motion: reduce) { .te-portrait { animation: none; opacity: 0.62; transform: translateX(-50%); } }
+.client-logo { display: block; height: 28px; width: auto; max-width: 150px; object-fit: contain; filter: grayscale(1); opacity: 0.75; transition: filter 200ms ease, opacity 200ms ease; }
+.clients-list li:hover .client-logo { filter: none; opacity: 1; }

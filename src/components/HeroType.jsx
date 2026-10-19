@@ -85,8 +85,8 @@ const floaters = [
   { slug: 'zygomed', shot: 'zygomed/landing', label: 'E-commerce', name: 'Zygomed', depth: 20 },
 ]
 
-/* Concept D: the same type, with the five industries drifting on the right and leaning toward the pointer. */
-export function HeroTypeD() {
+// Eases --mx/--my (-0.5..0.5) on the section toward the pointer. Off for touch and reduced motion.
+function usePointer() {
   const ref = useRef(null)
   useEffect(() => {
     const el = ref.current
@@ -118,7 +118,12 @@ export function HeroTypeD() {
       el.removeEventListener('pointerleave', leave)
     }
   }, [])
+  return ref
+}
 
+/* Concept D: the same type, with the five industries drifting on the right and leaning toward the pointer. */
+export function HeroTypeD() {
+  const ref = usePointer()
   return (
     <section ref={ref} className="type-hero th-d" aria-label="Introduction">
       <div className="wrap th-grid">
@@ -141,6 +146,63 @@ export function HeroTypeD() {
           ))}
         </ul>
         <Footline />
+      </div>
+    </section>
+  )
+}
+
+const scrollToWork = (e) => {
+  e.preventDefault()
+  document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })
+}
+
+/* Concept E: a toned portrait behind a three-line statement, with two fact cards set into the type. */
+export function HeroTypeE() {
+  const ref = usePointer()
+  const base = import.meta.env.BASE_URL
+  return (
+    <section ref={ref} className="type-hero th-e" aria-label="Introduction">
+      <img className="te-portrait" src={`${base}images/olanrewaju-hero.webp`} alt="" width="600" height="943" />
+      <div className="wrap te-grid">
+        <div className="te-stack">
+        <h1 className="te-lines" aria-label="Olanrewaju Oredipe: web and mobile products people trust">
+          <span className="te-line te-l1">
+            <Rise d={0}>Web &amp; mobile</Rise>
+            <Link to="/about" className="te-card fade-up" style={{ '--d': 4 }}>
+              <span>5 years designing products</span>
+            </Link>
+          </span>
+          <span className="te-line te-l2">
+            <Rise d={1}>products</Rise>
+          </span>
+          <span className="te-line te-l3">
+            <Rise d={2}>people trust</Rise>
+            <Link to="/projects" className="te-card te-card-img fade-up" style={{ '--d': 5 }}>
+              <span>8 case studies</span>
+              <Shot k="onehealth/app" alt="" eager />
+            </Link>
+            <a href="#work" className="te-arrow fade-up" style={{ '--d': 6 }} onClick={scrollToWork} aria-label="Scroll to the work">
+              <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 6v34M10 27l14 14 14-14" fill="none" stroke="currentColor" strokeWidth="6" /></svg>
+            </a>
+          </span>
+        </h1>
+        <p className="te-intro fade-up" style={{ '--d': 3 }}>
+          Hi, I'm Olanrewaju, a senior product designer in Lagos. I design for the moments people can't afford to get wrong.
+        </p>
+        </div>
+        <div className="te-foot fade-up" style={{ '--d': 6 }}>
+          <p>Lagos, Nigeria · (WAT) <LagosTime /></p>
+          <nav className="te-pill" aria-label="Quick links">
+            <Link to="/projects">Work</Link>
+            <Link to="/about">About</Link>
+            <Link to="/resume">Resume</Link>
+            <Link to="/contact" className="te-talk">
+              <img src={`${base}images/olanrewaju-avatar.webp`} alt="" width="28" height="28" />
+              Let's talk
+            </Link>
+          </nav>
+          <a className="te-scroll" href="#work" onClick={scrollToWork}>Scroll</a>
+        </div>
       </div>
     </section>
   )

@@ -3,7 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom'
 import { caseStudies, gallery } from '../data/caseStudies.js'
 import Shot from '../components/Shot.jsx'
 import { Arrow, ArtCluster } from '../components/Art.jsx'
-import { HeroTypeC, HeroTypeD } from '../components/HeroType.jsx'
+import { HeroTypeC, HeroTypeD, HeroTypeE } from '../components/HeroType.jsx'
 import { useTitle } from '../useTitle.js'
 
 // Which hero the live site uses. The preview build shows a switcher so the two options
@@ -13,7 +13,15 @@ const SHOW_SWITCHER = Boolean(import.meta.env.VITE_HASH_ROUTER)
 
 const byslug = Object.fromEntries(caseStudies.map((c) => [c.slug, c]))
 
-const clients = ['OneHealthNG', 'Reelcruit', 'iWello', 'Casha Microfinance Bank', 'QShelter', 'Fixiconn']
+// Add a logo file to public/images/logos/ and its name here, and the row shows the logo instead of the name.
+const clients = [
+  { name: 'OneHealthNG', logo: null },
+  { name: 'Reelcruit', logo: null },
+  { name: 'iWello', logo: null },
+  { name: 'Casha Microfinance Bank', logo: null },
+  { name: 'QShelter', logo: null },
+  { name: 'Fixiconn', logo: null },
+]
 
 // One tile per industry, so the first screen shows range rather than one sector.
 const mosaic = [
@@ -67,7 +75,13 @@ function Clients() {
       <div className="clients">
         <p className="clients-label">Teams I've designed for</p>
         <ul className="clients-list">
-          {clients.map((c) => <li key={c}>{c}</li>)}
+          {clients.map((c) => (
+            <li key={c.name}>
+              {c.logo
+                ? <img className="client-logo" src={`${import.meta.env.BASE_URL}images/logos/${c.logo}`} alt={c.name} />
+                : c.name}
+            </li>
+          ))}
         </ul>
       </div>
     </div>
@@ -178,7 +192,7 @@ function Switcher({ hero, set }) {
       <p className="switcher-title">Preview options</p>
       <div className="switcher-row">
         <span>Hero</span>
-        {opt('hero', 'b', hero, 'Now')}{opt('hero', 'c', hero, 'C')}{opt('hero', 'd', hero, 'D')}
+        {opt('hero', 'b', hero, 'Now')}{opt('hero', 'c', hero, 'C')}{opt('hero', 'd', hero, 'D')}{opt('hero', 'e', hero, 'E')}
       </div>
     </div>
   )
@@ -187,7 +201,7 @@ function Switcher({ hero, set }) {
 export default function Home() {
   useTitle()
   const [params, setParams] = useSearchParams()
-  const hero = SHOW_SWITCHER && ['b', 'c', 'd'].includes(params.get('hero')) ? params.get('hero') : SHOW_SWITCHER ? 'd' : DEFAULT_HERO
+  const hero = SHOW_SWITCHER && ['b', 'c', 'd', 'e'].includes(params.get('hero')) ? params.get('hero') : SHOW_SWITCHER ? 'e' : DEFAULT_HERO
   const set = (k, v) => {
     const next = new URLSearchParams(params)
     next.set(k, v)
@@ -196,12 +210,12 @@ export default function Home() {
 
   const featured = caseStudies.filter((c) => c.featured)
   const more = caseStudies.filter((c) => !c.featured)
-  const Hero = { a: HeroA, b: HeroB, c: HeroTypeC, d: HeroTypeD }[hero]
+  const Hero = { a: HeroA, b: HeroB, c: HeroTypeC, d: HeroTypeD, e: HeroTypeE }[hero]
 
   return (
     <>
       <Hero h={0} />
-      {(hero === 'c' || hero === 'd') && <Clients />}
+      {['c', 'd', 'e'].includes(hero) && <Clients />}
 
       <section className="wrap section" id="work">
         <h2 className="section-title">Selected case studies</h2>
