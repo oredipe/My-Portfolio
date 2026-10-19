@@ -98,10 +98,10 @@ function usePointer() {
 }
 
 /* Concept C: type only. The name is the hero. */
-export function HeroTypeC() {
+export function HeroTypeC({ top = false }) {
   const ref = usePointer()
   return (
-    <section ref={ref} className="type-hero th-c" aria-label="Introduction">
+    <section ref={ref} className={`type-hero th-c ${top ? 'th-c-top' : ''}`} aria-label="Introduction">
       <img className="te-portrait" src={`${import.meta.env.BASE_URL}images/olanrewaju-hero.webp`} alt="" width="600" height="943" />
       <div className="wrap th-grid">
         <h1 className="th-name" aria-label="Olanrewaju Oredipe">
@@ -208,4 +208,9 @@ export function HeroTypeE() {
       </div>
     </section>
   )
+}
+
+/* Concept C, name on top: statement sits under the name on the left. */
+export function HeroTypeCTop() {
+  return <HeroTypeC top />
 }

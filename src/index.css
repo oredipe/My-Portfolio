@@ -592,3 +592,10 @@ td:first-child { font-weight: 550; white-space: nowrap; }
   .th-c .th-name { grid-row: 3; align-self: end; }
   .th-c .th-foot { grid-row: 4; margin-top: 18px; }
 }
+/* C, name on top: statement under the name, on the left */
+@media (min-width: 901px) {
+  .th-c-top .th-grid { grid-template-rows: auto auto 1fr auto; }
+  .th-c-top .th-name { grid-row: 1; align-self: start; }
+  .th-c-top .th-statement { grid-column: 1; grid-row: 2; justify-self: start; padding-top: 18px; max-width: 24rem; }
+  .th-c-top .th-foot { grid-row: 4; }
+}

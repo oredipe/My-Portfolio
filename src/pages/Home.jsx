@@ -3,7 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom'
 import { caseStudies, gallery } from '../data/caseStudies.js'
 import Shot from '../components/Shot.jsx'
 import { Arrow, ArtCluster } from '../components/Art.jsx'
-import { HeroTypeC, HeroTypeD, HeroTypeE } from '../components/HeroType.jsx'
+import { HeroTypeC, HeroTypeCTop, HeroTypeD, HeroTypeE } from '../components/HeroType.jsx'
 import { useTitle } from '../useTitle.js'
 
 // Which hero the live site uses. The preview build shows a switcher so the two options
@@ -192,7 +192,7 @@ function Switcher({ hero, set }) {
       <p className="switcher-title">Preview options</p>
       <div className="switcher-row">
         <span>Hero</span>
-        {opt('hero', 'b', hero, 'Now')}{opt('hero', 'c', hero, 'C')}{opt('hero', 'd', hero, 'D')}{opt('hero', 'e', hero, 'E')}
+        {opt('hero', 'b', hero, 'Now')}{opt('hero', 'c', hero, 'C low')}{opt('hero', 'c2', hero, 'C top')}{opt('hero', 'd', hero, 'D')}{opt('hero', 'e', hero, 'E')}
       </div>
     </div>
   )
@@ -201,7 +201,7 @@ function Switcher({ hero, set }) {
 export default function Home() {
   useTitle()
   const [params, setParams] = useSearchParams()
-  const hero = SHOW_SWITCHER && ['b', 'c', 'd', 'e'].includes(params.get('hero')) ? params.get('hero') : DEFAULT_HERO
+  const hero = SHOW_SWITCHER && ['b', 'c', 'c2', 'd', 'e'].includes(params.get('hero')) ? params.get('hero') : SHOW_SWITCHER ? 'c2' : DEFAULT_HERO
   const set = (k, v) => {
     const next = new URLSearchParams(params)
     next.set(k, v)
@@ -210,12 +210,12 @@ export default function Home() {
 
   const featured = caseStudies.filter((c) => c.featured)
   const more = caseStudies.filter((c) => !c.featured)
-  const Hero = { a: HeroA, b: HeroB, c: HeroTypeC, d: HeroTypeD, e: HeroTypeE }[hero]
+  const Hero = { a: HeroA, b: HeroB, c: HeroTypeC, c2: HeroTypeCTop, d: HeroTypeD, e: HeroTypeE }[hero]
 
   return (
     <>
       <Hero h={0} />
-      {['c', 'd', 'e'].includes(hero) && <Clients />}
+      {['c', 'c2', 'd', 'e'].includes(hero) && <Clients />}
 
       <section className="wrap section" id="work">
         <h2 className="section-title">Selected case studies</h2>
