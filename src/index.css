@@ -758,3 +758,25 @@ td:first-child { font-weight: 550; white-space: nowrap; }
 .kw-who span { font-size: 14px; color: var(--cream-2); }
 .kw-1 figure { background: #2a342e; }
 @media (max-width: 900px) { .kw-list { grid-template-columns: 1fr; } }
+
+/* ---------- Owl logo and seal ---------- */
+.logo-lockup { gap: 9px; font-size: 24px; }
+.logo-owl { flex: none; transform: translateY(1px); }
+.owl-line { stroke: var(--green); transition: stroke 160ms ease; }
+.owl-eye { fill: var(--sun); }
+.wordmark:hover .owl-line { stroke: var(--green-deep); }
+.site:has(.type-hero) .masthead .owl-line { stroke: var(--mint); }
+.seal-line { stroke: var(--green); }
+.seal-text { fill: var(--green); font-family: var(--sans); }
+.seal .owl-line { stroke: var(--green); }
+/* footer is dark, so the seal turns mint */
+.footer-sign { display: flex; align-items: center; gap: 16px; }
+.footer .seal-line, .footer .seal .owl-line { stroke: var(--mint); }
+.footer .seal-text { fill: var(--mint); }
+/* resume header */
+.r-id { display: flex; align-items: center; gap: 16px; }
+.r-seal { flex: none; }
+@media print { .r-seal { width: 46pt; height: 46pt; } }
+@media (max-width: 720px) { .logo-lockup { font-size: 22px; } .logo-owl { width: 30px; height: 30px; } }
+/* Printing never scrolls, so scroll-revealed blocks must always show on paper */
+@media print { .rv, .rv.in { opacity: 1 !important; transform: none !important; transition: none !important; } }

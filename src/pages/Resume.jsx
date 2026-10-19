@@ -1,5 +1,6 @@
 import { profile, resume } from '../data/profile.js'
 import { useTitle } from '../useTitle.js'
+import { Seal } from '../brand/Owl.jsx'
 
 export const PDF = `${import.meta.env.BASE_URL}Olanrewaju-Oredipe-Resume.pdf`
 
@@ -17,9 +18,12 @@ export default function Resume() {
 
       <article className="resume" aria-label="Resume">
         <header className="r-head">
-          <div>
+          <div className="r-id">
+            <Seal size={64} className="r-seal" />
+            <div>
             <h2 className="r-name">{profile.name}</h2>
             <p className="r-role">{profile.role}</p>
+            </div>
           </div>
           <ul className="r-contact">
             <li>{profile.location}</li>

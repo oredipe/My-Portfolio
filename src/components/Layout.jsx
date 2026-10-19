@@ -3,6 +3,7 @@ import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import { profile } from '../data/profile.js'
 import { ArtCluster } from './Art.jsx'
 import Logo from './Logo.jsx'
+import { Seal } from '../brand/Owl.jsx'
 
 const nav = [
   ['/projects', 'Work'],
@@ -75,7 +76,10 @@ export default function Layout() {
             <li><Link to="/resume">Resume</Link></li>
             <li><Link to="/contact">Contact</Link></li>
           </ul>
-          <p className="footer-small">Designed and built by Olanrewaju Oredipe in Lagos, {new Date().getFullYear()}.</p>
+          <div className="footer-sign">
+            <Seal size={72} className="footer-seal" />
+            <p className="footer-small">Designed and built by Olanrewaju Oredipe in Lagos, {new Date().getFullYear()}.</p>
+          </div>
         </div>
       </footer>
     </div>
