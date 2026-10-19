@@ -8,7 +8,7 @@ import { useTitle } from '../useTitle.js'
 
 // Which hero the live site uses. The preview build shows a switcher so the two options
 // can be compared; once one is picked, set it here.
-const DEFAULT_HERO = 'b'
+const DEFAULT_HERO = 'c'
 const SHOW_SWITCHER = Boolean(import.meta.env.VITE_HASH_ROUTER)
 
 const byslug = Object.fromEntries(caseStudies.map((c) => [c.slug, c]))
@@ -201,7 +201,7 @@ function Switcher({ hero, set }) {
 export default function Home() {
   useTitle()
   const [params, setParams] = useSearchParams()
-  const hero = SHOW_SWITCHER && ['b', 'c', 'd', 'e'].includes(params.get('hero')) ? params.get('hero') : SHOW_SWITCHER ? 'e' : DEFAULT_HERO
+  const hero = SHOW_SWITCHER && ['b', 'c', 'd', 'e'].includes(params.get('hero')) ? params.get('hero') : DEFAULT_HERO
   const set = (k, v) => {
     const next = new URLSearchParams(params)
     next.set(k, v)

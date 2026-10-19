@@ -566,3 +566,14 @@ td:first-child { font-weight: 550; white-space: nowrap; }
 @media (prefers-reduced-motion: reduce) { .te-portrait { animation: none; opacity: 0.62; transform: translateX(-50%); } }
 .client-logo { display: block; height: 28px; width: auto; max-width: 150px; object-fit: contain; filter: grayscale(1); opacity: 0.75; transition: filter 200ms ease, opacity 200ms ease; }
 .clients-list li:hover .client-logo { filter: none; opacity: 1; }
+/* Concept C with portrait: the face sits in the open space right of "Oredipe", under the name */
+.th-c .te-portrait { left: 74%; height: min(74%, 700px); }
+.th-c .th-name .rise { padding-bottom: 0.12em; margin-bottom: -0.08em; }
+.th-c .th-statement p { text-shadow: 0 1px 18px rgba(16, 20, 18, 0.65); }
+@media (max-width: 900px) {
+  .th-c .te-portrait { left: 72%; top: auto; bottom: 0; height: 62%; opacity: 0.5; }
+}
+@media (max-width: 900px) {
+  .th-c .te-portrait { left: 50%; top: 0; bottom: auto; height: 400px; opacity: 0.62; }
+  .th-c .th-grid { padding-top: 290px; }
+}

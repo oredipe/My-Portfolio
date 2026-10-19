@@ -61,30 +61,6 @@ function Footline() {
   )
 }
 
-/* Concept C: type only. The name is the hero. */
-export function HeroTypeC() {
-  return (
-    <section className="type-hero th-c" aria-label="Introduction">
-      <div className="wrap th-grid">
-        <h1 className="th-name" aria-label="Olanrewaju Oredipe">
-          <Rise d={0}>Olanrewaju</Rise>
-          <Rise d={1}>Oredipe</Rise>
-        </h1>
-        <Statement />
-        <Footline />
-      </div>
-    </section>
-  )
-}
-
-const floaters = [
-  { slug: 'onehealthng', shot: 'onehealth/app', label: 'Healthtech', name: 'OneHealthNG', depth: 26 },
-  { slug: 'casha-business', shot: 'casha/hero', label: 'Fintech', name: 'Casha Business', depth: -18 },
-  { slug: 'reelcruit', shot: 'reelcruit/audiences', label: 'Recruitment and AI', name: 'Reelcruit', depth: 34 },
-  { slug: 'qshelter', shot: 'qshelter/property', label: 'Property', name: 'QShelter', depth: -28 },
-  { slug: 'zygomed', shot: 'zygomed/landing', label: 'E-commerce', name: 'Zygomed', depth: 20 },
-]
-
 // Eases --mx/--my (-0.5..0.5) on the section toward the pointer. Off for touch and reduced motion.
 function usePointer() {
   const ref = useRef(null)
@@ -120,6 +96,32 @@ function usePointer() {
   }, [])
   return ref
 }
+
+/* Concept C: type only. The name is the hero. */
+export function HeroTypeC() {
+  const ref = usePointer()
+  return (
+    <section ref={ref} className="type-hero th-c" aria-label="Introduction">
+      <img className="te-portrait" src={`${import.meta.env.BASE_URL}images/olanrewaju-hero.webp`} alt="" width="600" height="943" />
+      <div className="wrap th-grid">
+        <h1 className="th-name" aria-label="Olanrewaju Oredipe">
+          <Rise d={0}>Olanrewaju</Rise>
+          <Rise d={1}>Oredipe</Rise>
+        </h1>
+        <Statement />
+        <Footline />
+      </div>
+    </section>
+  )
+}
+
+const floaters = [
+  { slug: 'onehealthng', shot: 'onehealth/app', label: 'Healthtech', name: 'OneHealthNG', depth: 26 },
+  { slug: 'casha-business', shot: 'casha/hero', label: 'Fintech', name: 'Casha Business', depth: -18 },
+  { slug: 'reelcruit', shot: 'reelcruit/audiences', label: 'Recruitment and AI', name: 'Reelcruit', depth: 34 },
+  { slug: 'qshelter', shot: 'qshelter/property', label: 'Property', name: 'QShelter', depth: -28 },
+  { slug: 'zygomed', shot: 'zygomed/landing', label: 'E-commerce', name: 'Zygomed', depth: 20 },
+]
 
 /* Concept D: the same type, with the five industries drifting on the right and leaning toward the pointer. */
 export function HeroTypeD() {
