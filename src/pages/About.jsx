@@ -1,7 +1,11 @@
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import { resume } from '../data/profile.js'
 import { useTitle } from '../useTitle.js'
 import { ArtCluster } from '../components/Art.jsx'
+
+// Which About photo the live site uses: 'bw' or 'colour'. The preview build shows a switch to compare.
+const PHOTO = 'colour'
+const SHOW_SWITCHER = Boolean(import.meta.env.VITE_HASH_ROUTER)
 
 const principles = [
   ['Start from the constraint', 'Most of my users have little time, patchy data or a good reason to be suspicious. I design for that person first: plain words, fewer steps, and nothing that sounds too good to be true.'],
@@ -17,6 +21,8 @@ const quotes = [
 ]
 
 export default function About() {
+  const [params, setParams] = useSearchParams()
+  const photo = SHOW_SWITCHER && ['bw', 'colour'].includes(params.get('photo')) ? params.get('photo') : PHOTO
   useTitle('About')
   return (
     <div className="wrap">
@@ -50,7 +56,7 @@ export default function About() {
 
         <aside className="about-side" aria-label="Experience">
           <figure className="about-photo">
-            <img src={`${import.meta.env.BASE_URL}images/olanrewaju-portrait.webp`} alt="Olanrewaju Oredipe" width="800" height="1000" />
+            <img src={`${import.meta.env.BASE_URL}images/olanrewaju-about-${photo}.webp`} alt="Olanrewaju Oredipe" width="960" height="1200" />
           </figure>
           <h2 className="side-title">Experience</h2>
           <ol className="timeline">
@@ -89,6 +95,17 @@ export default function About() {
           ))}
         </div>
       </section>
+      {SHOW_SWITCHER && (
+        <div className="switcher" role="group" aria-label="Compare photo options">
+          <p className="switcher-title">Preview options</p>
+          <div className="switcher-row">
+            <span>Photo</span>
+            {[['bw', 'B&W'], ['colour', 'Colour']].map(([v, l]) => (
+              <button key={v} aria-pressed={photo === v} onClick={() => setParams({ photo: v }, { replace: true })}>{l}</button>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   )
 }
