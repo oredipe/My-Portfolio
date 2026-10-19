@@ -14,13 +14,14 @@ const SHOW_SWITCHER = Boolean(import.meta.env.VITE_HASH_ROUTER)
 
 const byslug = Object.fromEntries(caseStudies.map((c) => [c.slug, c]))
 
-// Add a logo file to public/images/logos/ and its name here, and the row shows the logo instead of the name.
+// Logos live in public/images/logos/. `mark: true` means the file is an icon only, so the name is shown beside it.
 const clients = [
-  { name: 'OneHealthNG', logo: null },
-  { name: 'Reelcruit', logo: null },
-  { name: 'iWello', logo: null },
-  { name: 'Casha Microfinance Bank', logo: null },
-  { name: 'QShelter', logo: null },
+  { name: 'OneHealthNG', logo: 'onehealth.webp', w: 729, h: 120, size: 'wide' },
+  { name: 'Reelcruit', logo: 'reelcruit.webp', w: 407, h: 120 },
+  { name: 'iWello', logo: 'iwello.webp', w: 390, h: 120 },
+  { name: 'Casha Microfinance Bank', logo: 'casha.webp', w: 300, h: 120 },
+  { name: 'QShelter', logo: 'qshelter.webp', w: 115, h: 120, mark: true },
+  { name: 'Sociall.ai', logo: 'sociall.webp', w: 121, h: 120, mark: true },
   { name: 'Fixiconn', logo: null },
 ]
 
@@ -77,10 +78,20 @@ function Clients() {
         <p className="clients-label">Teams I've designed for</p>
         <ul className="clients-list">
           {clients.map((c) => (
-            <li key={c.name}>
-              {c.logo
-                ? <img className="client-logo" src={`${import.meta.env.BASE_URL}images/logos/${c.logo}`} alt={c.name} />
-                : c.name}
+            <li key={c.name} className={c.logo ? `client client-${c.size || 'std'}` : 'client client-text'}>
+              {c.logo ? (
+                <>
+                  <img
+                    className={`client-logo ${c.mark ? 'is-mark' : ''}`}
+                    src={`${import.meta.env.BASE_URL}images/logos/${c.logo}`}
+                    alt={c.mark ? '' : c.name}
+                    width={c.w}
+                    height={c.h}
+                    loading="lazy"
+                  />
+                  {c.mark && <span className="client-name">{c.name}</span>}
+                </>
+              ) : c.name}
             </li>
           ))}
         </ul>
