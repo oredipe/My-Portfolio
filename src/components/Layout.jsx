@@ -16,6 +16,28 @@ export default function Layout() {
   const [open, setOpen] = useState(false)
   useEffect(() => setOpen(false), [pathname])
 
+  // Gentle reveal as blocks scroll into view. Runs per page; skipped when people prefer less motion.
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return
+    const sel = '.la-item, .row-list li, .card-grid li, .gallery-item, .figure, .principle, .quotes .quote, .r-job, .next, .about-photo, .timeline li'
+    const els = [...document.querySelectorAll(sel)].filter((el) => el.getBoundingClientRect().top > window.innerHeight * 0.92)
+    const io = new IntersectionObserver(
+      (entries) => entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in')
+          io.unobserve(e.target)
+        }
+      }),
+      { rootMargin: '0px 0px -8% 0px' },
+    )
+    els.forEach((el, i) => {
+      el.classList.add('rv')
+      el.style.setProperty('--rv', i % 3)
+      io.observe(el)
+    })
+    return () => io.disconnect()
+  }, [pathname])
+
   return (
     <div className="site">
       <a className="skip" href="#main">Skip to content</a>

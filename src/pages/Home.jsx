@@ -3,12 +3,13 @@ import { Link, useSearchParams } from 'react-router-dom'
 import { caseStudies, gallery } from '../data/caseStudies.js'
 import Shot from '../components/Shot.jsx'
 import { Arrow, ArtCluster } from '../components/Art.jsx'
+import { HeroTypeC, HeroTypeD } from '../components/HeroType.jsx'
 import { useTitle } from '../useTitle.js'
 
 // Which hero the live site uses. The preview build shows a switcher so the two options
 // can be compared; once one is picked, set it here.
 const DEFAULT_HERO = 'b'
-const SHOW_SWITCHER = false
+const SHOW_SWITCHER = Boolean(import.meta.env.VITE_HASH_ROUTER)
 
 const byslug = Object.fromEntries(caseStudies.map((c) => [c.slug, c]))
 
@@ -176,8 +177,8 @@ function Switcher({ hero, set }) {
     <div className="switcher" role="group" aria-label="Compare layout options">
       <p className="switcher-title">Preview options</p>
       <div className="switcher-row">
-        <span>Headline</span>
-        {headlines.map((_, i) => opt('h', String(i + 1), hero, String(i + 1)))}
+        <span>Hero</span>
+        {opt('hero', 'b', hero, 'Now')}{opt('hero', 'c', hero, 'C')}{opt('hero', 'd', hero, 'D')}
       </div>
     </div>
   )
@@ -186,7 +187,7 @@ function Switcher({ hero, set }) {
 export default function Home() {
   useTitle()
   const [params, setParams] = useSearchParams()
-  const hero = String(Math.min(Math.max(parseInt(params.get('h') || '1', 10) || 1, 1), 5))
+  const hero = SHOW_SWITCHER && ['b', 'c', 'd'].includes(params.get('hero')) ? params.get('hero') : SHOW_SWITCHER ? 'd' : DEFAULT_HERO
   const set = (k, v) => {
     const next = new URLSearchParams(params)
     next.set(k, v)
@@ -195,13 +196,14 @@ export default function Home() {
 
   const featured = caseStudies.filter((c) => c.featured)
   const more = caseStudies.filter((c) => !c.featured)
-  const Hero = { a: HeroA, b: HeroB }[DEFAULT_HERO]
+  const Hero = { a: HeroA, b: HeroB, c: HeroTypeC, d: HeroTypeD }[hero]
 
   return (
     <>
-      <Hero h={SHOW_SWITCHER ? Number(hero) - 1 : 0} />
+      <Hero h={0} />
+      {(hero === 'c' || hero === 'd') && <Clients />}
 
-      <section className="wrap section">
+      <section className="wrap section" id="work">
         <h2 className="section-title">Selected case studies</h2>
         <ListA items={featured} />
       </section>

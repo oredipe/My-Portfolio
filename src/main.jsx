@@ -4,6 +4,7 @@ import { BrowserRouter, HashRouter } from 'react-router-dom'
 import '@fontsource-variable/bricolage-grotesque'
 import '@fontsource-variable/newsreader'
 import '@fontsource-variable/newsreader/opsz-italic.css'
+import '@fontsource/instrument-serif/latin-400.css'
 import './index.css'
 import App from './App.jsx'
 
