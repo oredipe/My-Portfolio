@@ -1,4 +1,3 @@
 {
-  "trailingSlash": false,
-  "rewrites": [{ "source": "/((?!images/|.*\\.).*)", "destination": "/index.html" }]
+  "trailingSlash": false
 }

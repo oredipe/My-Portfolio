@@ -40,6 +40,13 @@ for (const [route, m] of Object.entries(routes)) {
   }
 }
 
+// A real 404 page: unknown addresses get a "not found" status instead of a copy of the homepage.
+const notFound = html
+  .replace(/<title>[^<]*<\/title>/, '<title>Page not found | Olanrewaju Oredipe</title>')
+  .replace(/\s*<link rel="canonical"[^>]*>/, '')
+  .replace('<meta name="author"', '<meta name="robots" content="noindex" />\n    <meta name="author"')
+fs.writeFileSync(path.join(dist, '404.html'), notFound)
+
 const today = new Date().toISOString().slice(0, 10)
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
