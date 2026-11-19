@@ -52,11 +52,12 @@ export default function Layout() {
           </button>
           <nav id="site-nav" className={`nav ${open ? 'is-open' : ''}`} aria-label="Main">
             {nav.map(([to, label]) => (
-              <NavLink key={to} to={to} className={({ isActive }) => (isActive ? 'is-active' : undefined)}>
+              <NavLink key={to} to={to} className={({ isActive }) => [to === '/contact' ? 'nav-contact-m' : '', isActive ? 'is-active' : ''].join(' ').trim() || undefined}>
                 {label}
               </NavLink>
             ))}
           </nav>
+          <NavLink to="/contact" className={({ isActive }) => `contact-pill${isActive ? ' is-active' : ''}`}>Contact</NavLink>
         </div>
       </header>
 

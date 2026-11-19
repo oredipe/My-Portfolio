@@ -6,11 +6,12 @@ import { Arrow, ArtCluster } from '../components/Art.jsx'
 import Devices from '../components/Devices.jsx'
 import { quotes } from '../data/testimonials.js'
 import { HeroTypeC, HeroTypeCTop, HeroTypeD, HeroTypeE } from '../components/HeroType.jsx'
+import HeroOrbit from '../components/HeroOrbit.jsx'
 import { useTitle } from '../useTitle.js'
 
 // Which hero the live site uses. The preview build shows a switcher so the two options
 // can be compared; once one is picked, set it here.
-const DEFAULT_HERO = 'c'
+const DEFAULT_HERO = 'r'
 const SHOW_SWITCHER = Boolean(import.meta.env.VITE_HASH_ROUTER)
 
 const byslug = Object.fromEntries(caseStudies.map((c) => [c.slug, c]))
@@ -302,7 +303,7 @@ function Switcher({ hero, list, set }) {
       <p className="switcher-title">Preview options</p>
       <div className="switcher-row">
         <span>Hero</span>
-        {opt('hero', 'b', hero, 'Now')}{opt('hero', 'c', hero, 'C low')}{opt('hero', 'c2', hero, 'C top')}{opt('hero', 'd', hero, 'D')}{opt('hero', 'e', hero, 'E')}
+        {opt('hero', 'r', hero, 'Orbit')}{opt('hero', 'b', hero, 'Now')}{opt('hero', 'c', hero, 'C low')}{opt('hero', 'c2', hero, 'C top')}{opt('hero', 'd', hero, 'D')}{opt('hero', 'e', hero, 'E')}
       </div>
       <div className="switcher-row">
         <span>Work</span>
@@ -315,7 +316,7 @@ function Switcher({ hero, list, set }) {
 export default function Home() {
   useTitle()
   const [params, setParams] = useSearchParams()
-  const hero = SHOW_SWITCHER && ['b', 'c', 'c2', 'd', 'e'].includes(params.get('hero')) ? params.get('hero') : DEFAULT_HERO
+  const hero = SHOW_SWITCHER && ['b', 'c', 'c2', 'd', 'e', 'r'].includes(params.get('hero')) ? params.get('hero') : DEFAULT_HERO
   const list = SHOW_SWITCHER && ['a', '1', '2', '3', '4'].includes(params.get('list')) ? params.get('list') : '1'
   const Work = { a: ListA, 1: ListW1, 2: ListW2, 3: ListW3, 4: ListW4 }[list]
   const set = (k, v) => {
@@ -326,12 +327,12 @@ export default function Home() {
 
   const featured = caseStudies.filter((c) => c.featured)
   const more = caseStudies.filter((c) => !c.featured)
-  const Hero = { a: HeroA, b: HeroB, c: HeroTypeC, c2: HeroTypeCTop, d: HeroTypeD, e: HeroTypeE }[hero]
+  const Hero = { a: HeroA, b: HeroB, c: HeroTypeC, c2: HeroTypeCTop, d: HeroTypeD, e: HeroTypeE, r: HeroOrbit }[hero]
 
   return (
     <>
       <Hero h={0} />
-      {['c', 'c2', 'd', 'e'].includes(hero) && <Clients />}
+      {['c', 'c2', 'd', 'e', 'r'].includes(hero) && <Clients />}
 
       <section className="wrap section" id="work">
         <h2 className="section-title">Selected case studies</h2>

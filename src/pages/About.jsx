@@ -15,6 +15,15 @@ const principles = [
   ['Be straight about results', "My case studies only claim numbers I can back up, call team results team results, and say when a product never launched."],
 ]
 
+// The work, year by year: a short timeline under "How I work". Mockups live in public/images/years/.
+const years = [
+  { year: '2021', name: 'iWello', line: 'Telemedicine, subscriptions and a booking tool.', img: 'iwello', w: 640, h: 453, to: '/projects/iwello' },
+  { year: '2022', name: 'Reelcruit, Sociall.ai', line: 'Hiring dashboards, and AI photo picks for profiles.', img: 'sociall', w: 640, h: 409, to: '/projects/reelcruit' },
+  { year: '2023', name: 'QShelter, NaijaFXRates, Zygomed', line: 'Home finance, live FX rates and a medical store.', img: 'zygomed', w: 640, h: 409, to: '/projects/qshelter' },
+  { year: '2024', name: 'OneHealthNG', line: 'Pillfinda, OneWellness and the pharmacy operations dashboard.', img: 'onehealth24', w: 640, h: 453, to: '/projects/onehealthng' },
+  { year: '2025', name: 'OneHealthNG', line: 'The pharmacy website, redesigned for faster refills.', img: 'onehealth25', w: 640, h: 453, to: '/projects/onehealthng' },
+  { year: '2026', name: 'Casha Business, OneHealth app', line: 'Small-business payroll, and the OneHealth mobile app.', img: 'y2026', w: 640, h: 618, to: '/projects/casha-business' },
+]
 
 export default function About() {
   const [params, setParams] = useSearchParams()
@@ -78,6 +87,26 @@ export default function About() {
             </div>
           ))}
         </div>
+      </section>
+
+      <section className="section yby" aria-labelledby="yby-title">
+        <h2 className="section-title" id="yby-title">The work, year by year</h2>
+        <p className="yby-intro">Five years, thirteen products. From telemedicine in 2021 to payroll and pharmacy apps today.</p>
+        <ol className="yby-list">
+          {years.map((y) => (
+            <li key={y.year} className="yy">
+              <span className="yy-dot" aria-hidden="true" />
+              <p className="yy-year">{y.year}</p>
+              <div className="yy-img">
+                <img src={`${import.meta.env.BASE_URL}images/years/${y.img}.webp`} alt="" width={y.w} height={y.h} loading="lazy" />
+              </div>
+              <div className="yy-text">
+                <p className="yy-name"><Link to={y.to}>{y.name}</Link></p>
+                <p className="yy-line">{y.line}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
       </section>
 
       <section className="section">
