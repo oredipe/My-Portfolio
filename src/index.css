@@ -879,3 +879,10 @@ td:first-child { font-weight: 550; white-space: nowrap; }
   .yy-img { height: 150px; margin-bottom: 12px; }
   .yy-img img { max-height: 150px; }
 }
+
+/* Home, wider screens: less empty space around "More case studies". */
+@media (min-width: 721px) {
+  .page:has(.orbit-hero) .kind-words { margin-bottom: 0; }
+  .page:has(.orbit-hero) .more-cs { padding-top: 72px; }
+  .site:has(.orbit-hero) .footer { margin-top: 80px; }
+}
